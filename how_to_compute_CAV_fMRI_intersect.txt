@@ -1,0 +1,4 @@
+1. get_cav_grids.py (run in Spyder, no inputs needed)
+2. run jupyter notebook 2017_04_08 JDW CAV fMRI overlap batch
+
+No need to run unionize code for CAV grids because they are more like structure overlaps than projection unionizes.
