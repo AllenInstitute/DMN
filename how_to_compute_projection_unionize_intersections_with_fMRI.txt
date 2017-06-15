@@ -8,4 +8,4 @@ explanation: python [path to script] [name of config file - stored in inputs\con
 
 3. Move outputs from the E drive in block\unionizes to \\AIBSDATA\mousecelltypes\T503_Connectivity_in_Alzheimer_Mice\Jennifer\fMRI data from Alessandro\fMRI CCF overlap improved registration\unionizes in the corresponding folder for the dataset. Starting to create two folders in each of these parent folders for regular and flipped.
 
-4. run 2017_03_23 JDW fMRI unionizes regular and flipped Aim 2 (or equivalent to be created). Output will be saved as a csv. *Caution - csv may be saved in the unionize directory not the base directory - check on this.
+4. run 2017_03_23 JDW fMRI unionizes regular and flipped Aim 2 (or equivalent to be created). Output will be saved as a csv.

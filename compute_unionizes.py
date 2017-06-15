@@ -49,7 +49,7 @@ def main():
     with open(config_path, 'rb') as cfgf:
         config = json.load(cfgf)
     
-    fmri_values = [0, 1, 2, 3, 4]
+    fmri_values = [0, 1, 2]
     base_sm_path = os.path.join(basepath, 'inputs')
     base_top_level = os.path.join(basepath, 'outputs')
     
