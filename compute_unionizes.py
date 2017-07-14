@@ -76,7 +76,8 @@ def main():
     fbun = FmriUnionizeBlock(
         top_level= os.path.join(top_level, 'block'),
         mask_dir = mask_dir, 
-        resolution=config['resolution'], 
+        plaque_dataset=bool(config['plaque_dataset']),
+        resolution=config['resolution'],
         store=False
         )  
 

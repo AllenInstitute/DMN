@@ -11,6 +11,7 @@ import os
 import lims_utilities as lu
 from anatomy.cav_grid_cache import CavGridCache
 from allensdk.config.manifest import Manifest
+from anatomy.anatomy_api import AnatomyApi
 
 basepath = r'E:\CAV_grid'
 
@@ -29,12 +30,14 @@ image_series_results = lu.query(image_series_query)
 print len(image_series_results)
 
 isr = [iser['id'] for iser in image_series_results]
+api = AnatomyApi()
 
 for im in isr:
     print im
     try:
         cgc.get_cav_grid(im)
     except:
+        print(api.get_storage_directory(im))
         continue
     
 #workflow id = 471789262 for T503.2, 304950893 for T601.4
