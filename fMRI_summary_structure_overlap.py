@@ -4,8 +4,7 @@ Created on Wed Feb 01 19:41:58 2017
 Nile already generated json files containing the data for intersecting each 
 structure with the fMRI overlay map. Here I am summing the overlap of each 
 structure with fMRI map values of 0, 1, 2, 3, and 4 and summarizing the data 
-for all structures. This script uses the improved fMRI-ccf alignment and 
-summary structures for calculations of overlap
+for all structures.
 
 @author: jenniferwh
 """

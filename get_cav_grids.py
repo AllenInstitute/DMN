@@ -23,7 +23,7 @@ cgc = CavGridCache(manifest_file = manifest_file)
 image_series_query = '''
     select im.id from image_series im
     join specimens_workflows sw on sw.specimen_id = im.specimen_id
-    where sw.workflow_id = 471789262 
+    where sw.workflow_id = 304950893 
     and im.workflow_state like 'passed'
 '''
 image_series_results = lu.query(image_series_query)
