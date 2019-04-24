@@ -3,8 +3,23 @@ from __future__ import division, print_function, absolute_import
 import os
 import json
 import argparse
+import sys
+import platform
 
-from allensdk.internal.core.lims_utilities import safe_system_path
+# specialized imports
+if platform.system() == 'Linux':
+    sys.path.append(r'/allen/programs/celltypes/workgroups/mousecelltypes/T503_Connectivity_in_Alzheimer_Mice/Jennifer/cluster_code')
+    sys.path.append(r'/allen/programs/celltypes/workgroups/mousecelltypes/T503_Connectivity_in_Alzheimer_Mice/Jennifer/cluster_code/anatomy')
+    sys.path.append(r'/allen/programs/celltypes/workgroups/mousecelltypes/T503_Connectivity_in_Alzheimer_Mice/Jennifer/cluster_code/nileg_utilities')
+    sys.path.append(r'/allen/programs/celltypes/workgroups/mousecelltypes/T503_Connectivity_in_Alzheimer_Mice/Jennifer/cluster_code/nileg_projects')
+    sys.path.append(r'/allen/programs/celltypes/workgroups/mousecelltypes/T503_Connectivity_in_Alzheimer_Mice/Jennifer/cluster_code/allensdk')
+    sys.path.append(r'/allen/programs/celltypes/workgroups/mousecelltypes/T503_Connectivity_in_Alzheimer_Mice/Jennifer/cluster_code/allensdk/allensdk/internal/core')
+    import lims_utilities
+    from lims_utilities import safe_system_path
+    
+if platform.system() == 'Windows':
+    from allensdk.internal.core import lims_utilities
+    from allensdk.internal.core.lims_utilities import safe_system_path
 
 from nileg_projects.fmri_unionization.fmri_intersection import FmriIntersect
 from nileg_projects.fmri_unionization.fmri_signal_unionization import \
@@ -62,10 +77,9 @@ def main():
             top_level=base_top_level, 
             fmri_path=sm_path, 
             resolution=config['resolution'],
-            model_dir = r'E:\fMRI_unionize\annotation\ccf_2016'
+            model_dir = None
             )
         inter.make_fmri_masks()
-        inter.many_structure_masks(*config['structure_ids'])
         inter.many_intersection_masks(config['structure_ids'], fmri_values)
     
         mask_dir = os.path.join(base_top_level, 'structure_intersections')
