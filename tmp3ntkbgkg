@@ -1,0 +1,165 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Jul  2 18:36:31 2019
+
+@author: jenniferwh
+"""
+import os
+import numpy as np
+import pandas as pd
+import nrrd
+
+path = r'C:\Users\jenniferwh\Dropbox (Allen Institute)\Mesoscale Connectome Papers in Progress\2019 DMN\Figure 6 target-defined matrix'
+maskpath = r'C:\Users\jenniferwh\Dropbox (Allen Institute)\Mesoscale Connectome Papers in Progress\2019 DMN\fMRI masks'
+
+from allensdk.core.mouse_connectivity_cache import MouseConnectivityCache
+resolution = 100 #100 um for fMRI overlap
+mcc = MouseConnectivityCache(manifest_file='../connectivity/mouse_connectivity_manifest.json',
+                            resolution=resolution)
+# Downsampled CAV grids are stored in my network folder
+cav_basepath = r'\\allen\programs\celltypes\workgroups\mousecelltypes\T503_Connectivity_in_Alzheimer_Mice\Jennifer\DMN_paper'
+cav_dir = os.path.join(cav_basepath, 'downsampled_CAV', 'grid') # Note the rabies polylgons are in this directory as well
+structure_dir = os.path.join(cav_basepath, 'structure_masks')
+
+def make_fmri_masks(fmri_mask, savepath):
+    '''Finds unique values in fmri volume and 
+    generates a mask for each.
+    '''
+    if not os.path.exists(savepath):
+        os.mkdir(savepath)
+    unique_fmri_values = []
+    for val in np.unique(fmri_mask):
+        ival = int(val)
+        unique_fmri_values.append(ival)
+    
+    for val in unique_fmri_values:
+        val_mask = np.zeros(fmri_mask.shape)
+        val_mask[np.where(fmri_mask == val)] = 1
+        nrrd.write(os.path.join(
+                savepath, 
+                'fmri_{0}_mask.nrrd'.format(val)), val_mask)
+
+dmn_mask, _ = nrrd.read(os.path.join(maskpath, 'dmn_mask_and_core.nrrd'))
+mask_dir = os.path.join(path, 'fmri_masks')
+make_fmri_masks(dmn_mask, mask_dir)
+fmri0, _ = nrrd.read(os.path.join(mask_dir, 'fmri_0_mask.nrrd'))
+fmri2, _ = nrrd.read(os.path.join(mask_dir, 'fmri_2_mask.nrrd'))
+
+from anatomy.anatomy_api import AnatomyApi # This is for getting data out of LIMS for unpublished image series. Will not work externally
+aapi = AnatomyApi()
+CAVis = aapi.get_image_series_by_workflow([471789262, 304950893])
+td_dataset = pd.read_csv(r'C:\Users\jenniferwh\Dropbox (Allen Institute)\Mesoscale Connectome Papers in Progress\2019 DMN\target_defined_dataset.csv')
+
+good_experiments = td_dataset[td_dataset['include'] == 'yes']['image_series_id'].unique()
+CAVis = [isid for isid in CAVis if isid in good_experiments]
+print(len(CAVis))
+
+polysize = []
+OL0 = []
+OL2 = []
+CAVproj_path = os.path.join(cav_basepath, 'downsampled_CAV', 'segmentation_in_CAV_mask')
+for isid in CAVis:
+    cavpath = os.path.join(cav_dir, str(isid))
+    CAV, _ = nrrd.read(os.path.join(cavpath, 'cav_density_100.nrrd'))
+    gridpath = os.path.join(aapi.get_storage_directory(isid), 'grid')
+    proj, _ = nrrd.read(os.path.join(gridpath, 'projection_density_100.nrrd'))
+    CAVmask = np.zeros(np.shape(CAV))
+    CAVmask[np.where(CAV>0.001)] = 1
+    CAVproj = proj * CAVmask
+    projpath = os.path.join(CAVproj_path, str(isid))
+    if not os.path.exists(projpath):
+        os.mkdir(projpath)
+    nrrd.write(os.path.join(projpath, 'projections_in_CAV_100.nrrd'), CAVproj)
+    polysize.append(np.sum(CAVproj))
+    OL0.append(np.sum(fmri0 * CAVproj))
+    OL2.append(np.sum(fmri2 * CAVproj))
+
+CAV_dat = pd.DataFrame({'image_series_id': CAVis, 'CAV_size': polysize, 'out_DMN': OL0, 'in_DMN': OL2})
+CAV_dat['CAV_percent_DMN'] = CAV_dat[['in_DMN']].sum(axis = 1)/CAV_dat['CAV_size']*100
+
+# %% Find target injection structures
+from allensdk.core.mouse_connectivity_cache import MouseConnectivityCache
+resolution = 25 # use 25 um resolution for injection structures
+mcc = MouseConnectivityCache(manifest_file='../connectivity/mouse_connectivity_manifest.json',
+                            resolution=resolution)
+st = mcc.get_structure_tree()
+summary_structure_ids = aapi.get_summary_structure_data('id')
+
+def get_structure_masks(structure_id, savepath=None):
+    '''Get structure masks from Allenllen API
+    
+    Parameters
+    ----------
+    structure_id : int
+        specifies structure
+    savepath : string
+        location to store masks for futre use
+    
+    '''
+    structure_mask, _ = mcc.get_structure_mask(structure_id)
+    if savepath:
+        if not os.path.exists(savepath):
+            os.mkdir(savepath)
+            nrrd.write(os.path.join(savepath, 'structure_{0}_mask.nrrd'.format(structure_id)), structure_mask)
+    else:
+        return structure_mask
+
+structure_dir_resolution = os.path.join(structure_dir, str(resolution))
+for structure_id in summary_structure_ids:
+    get_structure_masks(structure_id, structure_dir_resolution)
+    
+CAVproj_path = os.path.join(cav_basepath, 'downsampled_CAV', 'segmentation_in_CAV_mask')
+for isid in CAVis:
+    cavpath = os.path.join(cav_dir, str(isid))
+    CAV, _ = nrrd.read(os.path.join(cavpath, 'cav_density_25.nrrd'))
+    gridpath = os.path.join(aapi.get_storage_directory(isid), 'grid')
+    proj, _ = nrrd.read(os.path.join(gridpath, 'projection_density_25.nrrd'))
+    CAVmask = np.zeros(np.shape(CAV))
+    CAVmask[np.where(CAV>0.001)] = 1
+    CAVproj = proj * CAVmask
+    projpath = os.path.join(CAVproj_path, str(isid))
+    if not os.path.exists(projpath):
+        os.mkdir(projpath)
+    nrrd.write(os.path.join(projpath, 'projections_in_CAV_25.nrrd'), CAVproj)
+
+# %% Get primary and secondary injection structures for CAV data. 
+# TODO: Find out how to get CAV grids through API/SDK and update
+for isid in CAVis:
+    CAV, _ = nrrd.read(os.path.join(CAVproj_path, str(isid), 'projections_in_CAV_25.nrrd'))
+    maxOL = 0
+    OL = 0
+    secondary = 997
+    primary = 997
+    for mask in os.listdir(os.path.join(structure_dir, '25')):
+        structure = mask[10:-10]
+        if not any(structure in parent_structures for parent_structures in ['997', '688', '315', '8', '1080', '1009', '998']): 
+            #parent structures: root, cortex, isocortex, basic, hippocampus, fiber tracts 
+            strmask, _ = nrrd.read(os.path.join(structure_dir, '25', mask))
+            OL = np.sum(strmask * CAV)
+            if OL > maxOL:
+                maxOL = OL
+                secondary = primary
+                primary = mask[10:-10]
+    CAV_dat.loc[CAV_dat['image_series_id'] == isid, 'primary target'] = int(primary)
+    CAV_dat.loc[CAV_dat['image_series_id'] == isid, 'secondary target'] = int(secondary)
+
+structure_tree = mcc.get_structure_tree()
+ai_map = structure_tree.get_id_acronym_map()
+ia_map = {value:key for key, value in ai_map.items()}
+CAV_dat['primary target acronym'] = [ia_map[primary] for primary in CAV_dat['primary target']]
+CAV_dat['secondary target acronym'] = [ia_map[secondary] for secondary in CAV_dat['secondary target']]
+
+# %% Add source information
+td_experiments = pd.DataFrame(mcc.get_experiments(cre=['Ai75(RCL-nt)']))
+td_experiments.rename(columns = {'id': 'image_series_id'}, inplace = True)
+td_experiments = CAV_dat.merge(td_experiments[['gender', 'image_series_id', 'injection_structures', 'injection_volume', 
+                                               'injection_x', 'injection_y', 'injection_z',
+                                               'primary_injection_structure', 'structure_abbrev',
+                                               'structure_name']], on='image_series_id', how='left')
+
+
+savepath = r'C:\Users\jenniferwh\Dropbox (Allen Institute)\Mesoscale Connectome Papers in Progress\2019 DMN\Data files'
+CAV_dat.to_csv(os.path.join(
+        savepath, 
+        'target_primary_injection_structures_25.csv'),
+    index = False)
