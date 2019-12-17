@@ -8,6 +8,8 @@ import os
 import numpy as np
 import pandas as pd
 import nrrd
+from anatomy.anatomy_api import AnatomyApi
+import scipy.ndimage as ndimage
 
 path = r'C:\Users\jenniferwh\Dropbox (Allen Institute)\Mesoscale Connectome Papers in Progress\2019 DMN\Figure 6 target-defined matrix'
 maskpath = r'C:\Users\jenniferwh\Dropbox (Allen Institute)\Mesoscale Connectome Papers in Progress\2019 DMN\fMRI masks'
@@ -45,15 +47,26 @@ make_fmri_masks(dmn_mask, mask_dir)
 fmri0, _ = nrrd.read(os.path.join(mask_dir, 'fmri_0_mask.nrrd'))
 fmri2, _ = nrrd.read(os.path.join(mask_dir, 'fmri_2_mask.nrrd'))
 
-from anatomy.anatomy_api import AnatomyApi # This is for getting data out of LIMS for unpublished image series. Will not work externally
 aapi = AnatomyApi()
 CAVis = aapi.get_image_series_by_workflow([471789262, 304950893])
 td_dataset = pd.read_csv(r'C:\Users\jenniferwh\Dropbox (Allen Institute)\Mesoscale Connectome Papers in Progress\2019 DMN\target_defined_dataset.csv')
 
-good_experiments = td_dataset[td_dataset['include'] == 'yes']['image_series_id'].unique()
+good_experiments = td_dataset[td_dataset['include'] != 'no']['image_series_id'].unique()
 CAVis = [isid for isid in CAVis if isid in good_experiments]
 print(len(CAVis))
 
+for isid in CAVis:
+    if not os.path.isdir(os.path.join(cav_dir, str(isid))):
+        limspath = os.path.join(aapi.get_storage_directory(isid), 'grid')
+        gridfile, _ = nrrd.read(os.path.join(limspath, 'cav_density_10.nrrd'))
+        dsgrida = ndimage.zoom(gridfile, 0.4)
+        newpath = os.path.join(cav_dir, str(isid))
+        if not os.path.isdir(newpath):
+            os.mkdir(newpath)
+        nrrd.write(os.path.join(newpath, 'CAV_density_25.nrrd'), dsgrida)   
+        dsgridb = ndimage.zoom(gridfile, 0.1)
+        nrrd.write(os.path.join(newpath, 'CAV_density_100.nrrd'), dsgridb)       
+        
 polysize = []
 OL0 = []
 OL2 = []

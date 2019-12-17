@@ -1,3 +1,3 @@
-1. run jupyter notebook 2017_04_08 JDW CAV fMRI overlap batch
+1. CAV_target_structures_DMN_overlap.py
 
 No need to run unionize code for CAV grids because they are more like structure overlaps than projection unionizes.

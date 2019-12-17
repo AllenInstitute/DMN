@@ -8,7 +8,7 @@ get_CAV_grids
 """
 
 import os
-import lims_utilities as lu
+import allensdk.internal.core.lims_utilities as lu
 from anatomy.cav_grid_cache import CavGridCache
 from allensdk.config.manifest import Manifest
 from anatomy.anatomy_api import AnatomyApi
@@ -27,13 +27,13 @@ image_series_query = '''
     and im.workflow_state like 'passed'
 '''
 image_series_results = lu.query(image_series_query)
-print len(image_series_results)
+print(len(image_series_results))
 
 isr = [iser['id'] for iser in image_series_results]
 api = AnatomyApi()
 
 for im in isr:
-    print im
+    print(im)
     try:
         cgc.get_cav_grid(im)
     except:
