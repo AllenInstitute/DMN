@@ -99,11 +99,10 @@ iso = structure_tree.get_structures_by_acronym(['Isocortex'])[0]
 iso_mask = mcc.get_structure_mask(iso['id'])[0]
 
 # grab some experiments
-td_experiments = pd.DataFrame(mcc.get_experiments(cre=['Ai75(RCL-nt)'], 
-                                       injection_structure_ids=[iso['id']]))
-td_dataset = pd.read_csv(r'C:\Users\jenniferwh\Dropbox (Allen Institute)\Mesoscale Connectome Papers in Progress\2019 DMN\target_defined_dataset.csv')
-td_dataset = td_dataset[td_dataset['include'] == 'yes']
-td_experiments = td_experiments[td_experiments['id'].isin(td_dataset['image_series_id'].unique())]
+td_experiments = pd.read_csv(r'C:\Users\jenniferwh\Dropbox (Allen Institute)\Mesoscale Connectome Papers in Progress\2019 DMN\target_defined_dataset.csv',
+                             engine='python')
+td_experiments = td_experiments[td_experiments['include'] == 'yes']
+print(len(td_experiments))
 
 # DMN maksks
 if platform.system() == 'Windows':
@@ -128,7 +127,7 @@ projections = []
 in_or_out_masks = []
 in_or_out_core_masks = []
 cav_basepath = r'\\allen\programs\celltypes\workgroups\mousecelltypes\T503_Connectivity_in_Alzheimer_Mice\Jennifer\DMN_paper'
-for exp in td_experiments['id']:
+for exp in td_experiments['image_series_id']:
     try:
         inj_frac = mcc.get_injection_fraction(exp)[0]
         inj_den = mcc.get_injection_density(exp)[0]
@@ -212,8 +211,8 @@ y=d_coeff
 distance_fit = sm.OLS(y, sm.add_constant(x, prepend=True)).fit()
 print(distance_fit.summary())
 
-ctx_glm_dat = pd.DataFrame({'id': td_experiments['id'], 
-                       'injection structure': td_experiments['structure_abbrev'],
+ctx_glm_dat = pd.DataFrame({'id': td_experiments['image_series_id'], 
+                       'injection structure': td_experiments['source'],
                        'injection dmn fraction': inj_ratios,
                        'projection dmn fraction': proj_ratios,
                        'distance coefficient': d_coeff,

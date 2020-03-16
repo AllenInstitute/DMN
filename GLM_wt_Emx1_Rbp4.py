@@ -106,15 +106,6 @@ cre_experiments = pd.DataFrame(mcc.get_experiments(cre=['Emx1-IRES-Cre','Rbp4-Cr
                                       injection_structure_ids = [iso['id']]))
 ctx_experiments = pd.concat([ctx_experiments, cre_experiments])
 
-fail_expts = [114008926, 120280939, 180073473, 180403712, 180601025, 183174303, 183329222,
-              249396394, 296047806, 299446445, 301060890, 303784745, 480069939, 482578964, 
-              506947040, 514333422, 525796603, 545428296, 559878074, 638314843, 182888003,
-             304585910, 183171679, 272930013, 523718075, 517072832, 148964212, 304762965,
-             566992832, 272930013, 304762965, 266250904, 114399224, 286483411, 286417464,
-             593277684, 546103149, 642809043, 286483411, 304564721] #VISp outlier excluded
-
-ctx_experiments = ctx_experiments[~ctx_experiments['id'].isin(fail_expts)]
-
 # DMN maksks
 if platform.system() == 'Windows':
     path = r'C:\Users\jenniferwh\Dropbox (Allen Institute)\Mesoscale Connectome Papers in Progress\2019 DMN'
