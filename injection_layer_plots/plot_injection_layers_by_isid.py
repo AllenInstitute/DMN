@@ -87,10 +87,12 @@ https://stackoverflow.com/questions/22787209/how-to-have-clusters-of-stacked-bar
                 rect.set_x(rect.get_x() / float(n_df + pad) * i )
                 rect.set_width(1 / float(n_df + pad))
                 rect.set_color(layer_colors[j])
-    minval = 0.02
-    maxval = 0.22
+    minval = -0.05
+    maxval = 0.2
     step = (maxval-minval)/n_df
+    print(step)
     axe.set_xticks(np.arange(minval, maxval, step))
+    axe.set_xticks([-0.05, 0.02, 0.12])
     axe.tick_params(axis='both', which='major', pad=-3)
     axe.set_ylim([0.01, 1]) #this gets rid of horizontal line on top of plot
     axe.set_yticklabels([None])
@@ -119,8 +121,7 @@ https://stackoverflow.com/questions/22787209/how-to-have-clusters-of-stacked-bar
     plt.tight_layout()
     return axe
 
-isids = [609475867, 475829896, 649362978, 637855050, 477435412,
-         571401645, 528741104, 607321130, 607059419] #right to left in figure
+isids = [112595376, 100141219, 571401645] #right to left in figure
 df = pd.DataFrame({'experiment': isids})
 injs = mcc.get_structure_unionizes(experiment_ids = df['experiment'].values, 
                                        is_injection = True, hemisphere_ids = [3]) 
@@ -158,10 +159,8 @@ try:
     labels = [st_dict[isid] for isid in isids]
 except:
     labels = isids
-fname = 'ACAd_all_TD'
-labels = ['ACAd$_{RSPagl}$', 'ACAd$_{RSPv}$', 'ACAd$_{RSPv}$', 'ACAd$_{RSPv}$',
-          'ACAd$_{VISam}$', 'ACAd$_{VISam}$', 'ACAd$_{ORBvl}$', 'ACAd$_{MOp}$',
-          'ACAd$_{VISp}$'] #left to right in figure
+fname = 'WT'
+labels = ['ACAd$_{WT}$', 'VISp$_{WT}$', 'RSPv$_{WT}$'] #left to right in figure
 g = plot_clustered_stacked(dfs, labels)
 
 plt.savefig(os.path.join(path, 
