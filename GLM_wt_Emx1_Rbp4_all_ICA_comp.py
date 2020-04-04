@@ -9,8 +9,6 @@ import os
 import numpy as np
 import pandas as pd
 import platform
-import matplotlib.pyplot as plt
-import seaborn as sns
 from scipy.spatial.distance import cdist
 import statsmodels.api as sm
 from allensdk.core.mouse_connectivity_cache import MouseConnectivityCache
@@ -122,8 +120,9 @@ def fit_glm(categorical_var, distances, projections):
         X = sm.add_constant(X, prepend=False)
 
         # y Use log projection density
-        y = np.log10 ( projections[exp] + 3.1e-14 ) #1/2 min proj. value
-    
+        epsilon = 1
+        y = np.log10( projections[exp] + epsilon )
+
         # fit
         fit = sm.OLS(y, X).fit()
     
@@ -144,19 +143,9 @@ isohipp_mask = iso_mask + hipp_mask
 # grab some experiments
 ctx_experiments = pd.DataFrame(mcc.get_experiments(cre=False, 
                                        injection_structure_ids=[iso['id']]))
-
 cre_experiments = pd.DataFrame(mcc.get_experiments(cre=['Emx1-IRES-Cre','Rbp4-Cre_KL100'],
                                       injection_structure_ids = [iso['id']]))
 ctx_experiments = pd.concat([ctx_experiments, cre_experiments])
-
-fail_expts = [114008926, 120280939, 180073473, 180403712, 180601025, 183174303, 183329222,
-              249396394, 296047806, 299446445, 301060890, 303784745, 480069939, 482578964, 
-              506947040, 514333422, 525796603, 545428296, 559878074, 638314843, 182888003,
-             304585910, 183171679, 272930013, 523718075, 517072832, 148964212, 304762965,
-             566992832, 272930013, 304762965, 266250904, 114399224, 286483411, 286417464,
-             593277684, 546103149, 642809043, 286483411, 304564721] #VISp outlier excluded
-
-ctx_experiments = ctx_experiments[~ctx_experiments['id'].isin(fail_expts)]
 hipp_experiments = pd.DataFrame(mcc.get_experiments(cre=False, 
                                        injection_structure_ids=[hipp['id']]))
 
@@ -169,18 +158,29 @@ outpath = os.path.join(path, 'data_files')
 mask_path = os.path.join(path, 'fMRI_masks', 'all ICA components and masks zscore 1')
 
 for num in np.arange(5):
+    print(num)
     mask, _ = nrrd.read(os.path.join(
-        mask_path,
-        'ica_all_05_icasso_iter_1000_comp_{0}_mask_z_1_allen_masked_sym_thresh_2.nrrd'.format(num)))
+            mask_path,
+            'ica_all_05_icasso_iter_1000_comp_{0}_mask_z_1_allen_masked_sym_thresh_2.nrrd'.format(num)))
+    if num == 3:
+        in_or_out = shrink_to_mask( mask, isohipp_mask )
+        hipp_centroids, hipp_ratios_in, hipp_distances, hipp_projections, hipp_proj_ratios = calculate_centroids_and_distances(
+            hipp_experiments, mask, isohipp_mask)
+        hipp_d_coeff, hipp_mask_coeff, hipp_tvals, hipp_pvals  = fit_glm(in_or_out, hipp_distances, hipp_projections)
+        hipp_glm_dat = pd.DataFrame({'id': hipp_experiments['id'],
+                                 'injection structure': hipp_experiments['structure_abbrev'],
+                           'injection mask fraction': hipp_ratios_in,
+                           'projection mask fraction': hipp_proj_ratios,
+                           'distance coefficient': hipp_d_coeff, 
+                           'mask coefficient': hipp_mask_coeff,
+                           't values': hipp_tvals,
+                           'p values': hipp_pvals})
+        hipp_glm_dat.to_csv(os.path.join(outpath, 'hippocampal_injections_ICA_{0}.csv'.format(num)))
+    # do ctx overlap for all
     ctx_centroids, ctx_ratios_in, ctx_distances, ctx_projections, ctx_proj_ratios = calculate_centroids_and_distances(
         ctx_experiments, mask, iso_mask)
-    hipp_centroids, hipp_ratios_in, hipp_distances, hipp_projections, hipp_proj_ratios = calculate_centroids_and_distances(
-        hipp_experiments, mask, isohipp_mask)
-    
-    in_or_out_ctx = shrink_to_mask(mask, iso_mask)
-    in_or_out_hipp = shrink_to_mask(mask, isohipp_mask)
-    
-    ctx_d_coeff, ctx_mask_coeff, ctx_tvals, ctx_pvals  = fit_glm(in_or_out_ctx, ctx_distances, ctx_projections)
+    in_or_out = shrink_to_mask( mask, iso_mask )
+    ctx_d_coeff, ctx_mask_coeff, ctx_tvals, ctx_pvals  = fit_glm(in_or_out, ctx_distances, ctx_projections)
     ctx_glm_dat = pd.DataFrame({'id': ctx_experiments['id'],
                                 'injection structure': ctx_experiments['structure_abbrev'],
                            'injection mask fraction': ctx_ratios_in,
@@ -190,16 +190,6 @@ for num in np.arange(5):
                            't values': ctx_tvals,
                            'p values': ctx_pvals})
     ctx_glm_dat.to_csv(os.path.join(outpath, 'ICA_{0}.csv'.format(num)))
-    
-    hipp_d_coeff, hipp_mask_coeff, hipp_tvals, hipp_pvals  = fit_glm(in_or_out_hipp, hipp_distances, hipp_projections)
-    hipp_glm_dat = pd.DataFrame({'id': hipp_experiments['id'],
-                                 'injection structure': hipp_experiments['structure_abbrev'],
-                           'injection mask fraction': hipp_ratios_in,
-                           'projection mask fraction': hipp_proj_ratios,
-                           'distance coefficient': hipp_d_coeff, 
-                           'mask coefficient': hipp_mask_coeff,
-                           't values': hipp_tvals,
-                           'p values': hipp_pvals})
-    hipp_glm_dat.to_csv(os.path.join(outpath, 'hippocampal_injections_ICA_{0}.csv'.format(num)))
 
+        
 

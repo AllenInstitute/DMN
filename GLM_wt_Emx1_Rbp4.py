@@ -82,7 +82,8 @@ def fit_glm(categorical_var, distances, projections):
         X = sm.add_constant(X, prepend=False)
 
         # y Use log projection density
-        y = np.log10 ( projections[exp] + 3.1e-14 ) #1/2 min proj. value
+        epsilon = 1
+        y = np.log10( projections[exp] + epsilon )
     
         # fit
         fit = sm.OLS(y, X).fit()

@@ -82,7 +82,7 @@ def fit_glm_CAV_removed(categorical_var, distances, projections):
         X = sm.add_constant(X, prepend=False)
 
         # y Use log projection density
-        y = np.log10 ( projections[exp] + 3.1e-14 )
+        y = np.log10 ( projections[exp] + 1 )
     
         # fit
         fit = sm.OLS(y, X).fit()
@@ -99,8 +99,7 @@ iso = structure_tree.get_structures_by_acronym(['Isocortex'])[0]
 iso_mask = mcc.get_structure_mask(iso['id'])[0]
 
 # grab some experiments
-td_experiments = pd.read_csv(r'C:\Users\jenniferwh\Dropbox (Allen Institute)\Mesoscale Connectome Papers in Progress\2019 DMN\target_defined_dataset.csv',
-                             engine='python')
+td_experiments = pd.read_csv(r'C:\Users\jenniferwh\Dropbox (Allen Institute)\Mesoscale Connectome Papers in Progress\2019 DMN\target_defined_dataset.csv')
 td_experiments = td_experiments[td_experiments['include'] == 'yes']
 print(len(td_experiments))
 
