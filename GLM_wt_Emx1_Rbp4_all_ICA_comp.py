@@ -120,7 +120,9 @@ def fit_glm(categorical_var, distances, projections):
         X = sm.add_constant(X, prepend=False)
 
         # y Use log projection density
-        epsilon = 1
+        threshold = 1.6e-4
+        projections[exp][projections[exp] < threshold] = 0
+        epsilon = 0.01
         y = np.log10( projections[exp] + epsilon )
 
         # fit

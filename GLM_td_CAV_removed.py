@@ -9,8 +9,6 @@ import os
 import numpy as np
 import pandas as pd
 import platform
-import matplotlib.pyplot as plt
-import seaborn as sns
 from scipy.spatial.distance import cdist
 import statsmodels.api as sm
 from anatomy.anatomy_api import AnatomyApi
@@ -82,7 +80,10 @@ def fit_glm_CAV_removed(categorical_var, distances, projections):
         X = sm.add_constant(X, prepend=False)
 
         # y Use log projection density
-        y = np.log10 ( projections[exp] + 1 )
+        threshold = 1.6e-4
+        projections[exp][projections[exp] < threshold] = 0
+        epsilon = 0.01
+        y = np.log10( projections[exp] + epsilon )
     
         # fit
         fit = sm.OLS(y, X).fit()
@@ -98,17 +99,17 @@ def fit_glm_CAV_removed(categorical_var, distances, projections):
 iso = structure_tree.get_structures_by_acronym(['Isocortex'])[0]
 iso_mask = mcc.get_structure_mask(iso['id'])[0]
 
-# grab some experiments
-td_experiments = pd.read_csv(r'C:\Users\jenniferwh\Dropbox (Allen Institute)\Mesoscale Connectome Papers in Progress\2019 DMN\target_defined_dataset.csv')
-td_experiments = td_experiments[td_experiments['include'] == 'yes']
-print(len(td_experiments))
-
 # DMN maksks
 if platform.system() == 'Windows':
     path = r'C:\Users\jenniferwh\Dropbox (Allen Institute)\Mesoscale Connectome Papers in Progress\2019 DMN'
+    cav_basepath = r'\\allen\programs\celltypes\workgroups\mousecelltypes\T503_Connectivity_in_Alzheimer_Mice\Jennifer\DMN_paper'
 elif platform.system() == 'Darwin':
     path = r'/Users/jenniferwh/Dropbox (Allen Institute)/Mesoscale Connectome Papers in Progress/2019 DMN'
 outpath = os.path.join(path, 'data_files')
+# grab some experiments
+td_experiments = pd.read_csv(os.path.join(path, 'target_defined_dataset.csv'))
+td_experiments = td_experiments[td_experiments['include'] == 'yes']
+print(len(td_experiments))
 masks, _ = nrrd.read(os.path.join(path, 'fMRI_masks', 'dmn_mask_and_core.nrrd'))
 dmn_mask = np.zeros(masks.shape)
 dmn_mask[np.where(masks > 0)] = 1
@@ -125,7 +126,6 @@ distances = []
 projections = []
 in_or_out_masks = []
 in_or_out_core_masks = []
-cav_basepath = r'\\allen\programs\celltypes\workgroups\mousecelltypes\T503_Connectivity_in_Alzheimer_Mice\Jennifer\DMN_paper'
 for exp in td_experiments['image_series_id']:
     try:
         inj_frac = mcc.get_injection_fraction(exp)[0]

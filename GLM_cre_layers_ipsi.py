@@ -27,8 +27,9 @@ elif platform.system() == 'Darwin':
     
 maskpath = os.path.join(path, 'fMRI_masks')
 datpath = os.path.join(path, 'data_files')
+fig3_path = os.path.join(path, '_new_figures', 'Figure_3')
 
-dat = pd.read_csv(os.path.join(datpath, 'Ext Data Table 3_Corticocortical NPV matrices.csv'))
+dat = pd.read_csv(os.path.join(fig3_path, 'Ext Data Table 3_Corticocortical NPV matrices.csv'))
 dat.rename(columns = {'Exp image series ID': 'image_series_id', 'Rbp4 anchor image series ID': 'Rbp4_anchor_id',
                      'distance from anchor': 'distance', 'Consensus Rbp4 anchor Source': 'Rbp4_source'}, 
            inplace = True)
@@ -103,7 +104,10 @@ def fit_glm(categorical_var, distances, projections):
         X = sm.add_constant(X, prepend=False)
 
         # y Use log projection density
-        y = np.log10 ( projections[exp] + 1 )
+        threshold = 1.6e-4
+        projections[exp][projections[exp] < threshold] = 0
+        epsilon = 0.01
+        y = np.log10( projections[exp] + epsilon )
     
         # fit
         fit = sm.OLS(y, X).fit()
