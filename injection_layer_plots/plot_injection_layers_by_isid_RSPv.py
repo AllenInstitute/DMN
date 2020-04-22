@@ -85,8 +85,8 @@ https://stackoverflow.com/questions/22787209/how-to-have-clusters-of-stacked-bar
                 rect.set_x(rect.get_x() / float(n_df + pad) * i )
                 rect.set_width(1 / float(n_df + pad))
                 rect.set_color(layer_colors[j])
-    minval = -0.1
-    maxval = 0.1
+    minval = -0.34
+    maxval = 0.08
     step = (maxval-minval)/n_df
     print(step)
     axe.set_xticks(np.arange(minval, maxval, step))
@@ -119,7 +119,8 @@ https://stackoverflow.com/questions/22787209/how-to-have-clusters-of-stacked-bar
     plt.tight_layout()
     return axe
 
-isids = [605112318, 595890081, 595261714] #right to left in figure
+isids = [112595376, 666090944, 569904687, 592724077, 561511939, 521255975, #868641659
+         623838656, 592522663] #right to left in figure
 df = pd.DataFrame({'experiment': isids})
 injs = mcc.get_structure_unionizes(experiment_ids = df['experiment'].values, 
                                        is_injection = True, hemisphere_ids = [3]) 
@@ -157,8 +158,8 @@ try:
     labels = [st_dict[isid] for isid in isids]
 except:
     labels = isids
-fname = 'RSPv_rabies'
-labels = ['RSPv$_{ACAd}$', 'RSPv$_{VISp}$', 'RSPv$_{VISpl}$'] #left to right in figure
+fname = 'RSPv'
+labels = ['PL', 'PL', 'ACAd', 'ACAd', 'VISpl', 'VISl', 'VISpl', 'WT'] #left to right in figure
 g = plot_clustered_stacked(dfs, labels)
 
 savepath = r'/Users/jenniferwh/Dropbox (Allen Institute)/Mesoscale Connectome Papers in Progress/2019 DMN/_new_figures/Figure_6'
