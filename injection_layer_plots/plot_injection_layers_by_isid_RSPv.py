@@ -9,6 +9,7 @@ import os
 import numpy as np
 import pandas as pd
 import seaborn as sns
+import json
 sns.set_context('paper')
 sns.set_style('white')
 
@@ -67,7 +68,7 @@ https://stackoverflow.com/questions/22787209/how-to-have-clusters-of-stacked-bar
     n_col = len(dfall[0].columns)
     n_ind = len(dfall[0].index)
     axe = plt.subplot(111)
-    layer_colors = ['k', 'c', 'm', 'gray', 'gold']
+    layer_colors = ['k', '#00ffff', '#ff00ff', '#008000', '#ffff00']
     
     for df in dfall : # for each data frame
         axe = df.plot(kind="bar",
@@ -85,17 +86,18 @@ https://stackoverflow.com/questions/22787209/how-to-have-clusters-of-stacked-bar
                 rect.set_x(rect.get_x() / float(n_df + pad) * i )
                 rect.set_width(1 / float(n_df + pad))
                 rect.set_color(layer_colors[j])
-    minval = -0.34
+    minval = -0.38
     maxval = 0.08
     step = (maxval-minval)/n_df
     print(step)
     axe.set_xticks(np.arange(minval, maxval, step))
     #axe.set_xticks([-0.05, 0.02, 0.12])
     axe.tick_params(axis='both', which='major', pad=-3)
-    axe.set_ylim([0.01, 1]) #this gets rid of horizontal line on top of plot
+    #This may hide a little bit of the top of the bars - use with caution.
+    #axe.set_ylim([0.01, 1]) #this gets rid of horizontal line on top of plot
     axe.set_yticklabels([None])
     axe.set_xlabel("")
-    axe.set_xticklabels(labels, rotation = 90, fontsize = 7)
+    axe.set_xticklabels(labels, rotation = 90, fontsize = 6)
     axe.set_title(title, fontsize = 16,
                   fontweight='bold')
     axe.invert_yaxis()
@@ -111,19 +113,49 @@ https://stackoverflow.com/questions/22787209/how-to-have-clusters-of-stacked-bar
     for i in range(n_df):
         n.append(axe.bar(0, 0, color="gray", hatch=H * i))
 
-    l1 = axe.legend(h[:n_col], l[:n_col], loc=1, fontsize = 6,
+    l1 = axe.legend(h[:n_col], l[:n_col], loc=1, fontsize = 5,
                     bbox_to_anchor = [0.8,1],
                     labelspacing = 0.2)
     axe.add_artist(l1)
-    fig.set_size_inches(2.5, 1.7)
+    fig.set_size_inches(1.75, 1.7)
     plt.tight_layout()
     return axe
 
-isids = [112595376, 666090944, 569904687, 592724077, 561511939, 521255975, #868641659
+all_isids = [112595376, 666090944, 569904687, 868641659, 592724077, 561511939, 521255975, #868641659
          623838656, 592522663] #right to left in figure
-df = pd.DataFrame({'experiment': isids})
-injs = mcc.get_structure_unionizes(experiment_ids = df['experiment'].values, 
-                                       is_injection = True, hemisphere_ids = [3]) 
+isids = [112595376, 666090944, 569904687, 592724077, 561511939, 521255975, #868641659
+         623838656, 592522663] #available through SDK
+not_online = [868641659]
+df = pd.DataFrame({'experiment': all_isids})
+
+inj_unionizes = []
+if len(not_online)>0: # new data not released online
+    for expt in not_online:
+        if platform.system() == 'Windows':
+            unionize_path = os.path.join(r'\\allen\programs\celltypes\workgroups\mousecelltypes\T503_Connectivity_in_Alzheimer_Mice\Jennifer\DMN_paper\alternative_unionizes',
+                                         'experiment_{0}'.format(str(expt)), 
+                                         'output.json') #new data not online yet
+        else:
+            unionize_path = os.path.join(r'/Users/jenniferwh/Dropbox (Allen Institute)/Mesoscale Connectome Papers in Progress/2019 DMN/data_files/alternative_unionizes',
+                                         'experiment_{0}'.format(str(expt)), 
+                                         'output.json') #new data not online yet
+        with open(unionize_path, 'r') as jsonfile:
+            unionize_dat = json.load(jsonfile)
+        unionize_dat = pd.DataFrame(unionize_dat)
+        unionize_dat = unionize_dat[unionize_dat['threshold'] == 0]
+        unionize_dat.drop_duplicates(inplace = True)
+        unionize_dat.rename(columns = {'projection_volume_above_threshold': 'projection_volume',
+                                   'normalized_projection_volume_above_threshold': 
+                                       'normalized_projection_volume',
+                                       'image_series_id': 'experiment_id'}, 
+            inplace = True)
+        inj_unionize = unionize_dat[(unionize_dat['is_injection'] == True) &
+                              (unionize_dat['hemisphere_id'] == 3)]
+        inj_unionizes.append(inj_unionize)
+
+injs = mcc.get_structure_unionizes(experiment_ids = isids, 
+                                   is_injection = True, hemisphere_ids = [3]) 
+injs = pd.concat([injs, inj_unionize], sort = True)
 for ix, row in df.iterrows():
     print(row['experiment'])
     inj_total = injs[(injs['experiment_id'] == row['experiment']) & 
@@ -159,7 +191,7 @@ try:
 except:
     labels = isids
 fname = 'RSPv'
-labels = ['PL', 'PL', 'ACAd', 'ACAd', 'VISpl', 'VISl', 'VISpl', 'WT'] #left to right in figure
+labels = ['PL', 'PL', 'ACAd', 'ACAd', 'VISpl', 'VISp', 'VISl', 'VISpl', 'WT'] #left to right in figure
 g = plot_clustered_stacked(dfs, labels)
 
 savepath = r'/Users/jenniferwh/Dropbox (Allen Institute)/Mesoscale Connectome Papers in Progress/2019 DMN/_new_figures/Figure_6'
