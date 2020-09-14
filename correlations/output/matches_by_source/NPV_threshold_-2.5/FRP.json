@@ -1,0 +1,39 @@
+{
+    "sum_NPV_A": [
+        13.33868164697414
+    ], 
+    "sum_NPV_B": [
+        41.08407747130683
+    ], 
+    "dice_coefficient": [
+        0.29195121215176323
+    ], 
+    "pearson_correlation": [
+        0.9780110435379273
+    ], 
+    "match_A": [
+        100140756
+    ], 
+    "fraction of match covered by td injection": [
+        0.3252644241205813
+    ], 
+    "absolute_overlap": [
+        2405.910039306268
+    ], 
+    "distance": [
+        165.5294535724685
+    ], 
+    "absolute_overlap_lg_over_small": [
+        2371.755387829208
+    ], 
+    "spearman_correlation": [
+        0.9076313825333358
+    ], 
+    "injection_overlap": [
+        0.26180183651924666
+    ], 
+    "source": "FRP", 
+    "match_B": [
+        157710335
+    ]
+}

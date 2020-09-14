@@ -1,0 +1,4 @@
+1. run do_matched_correlations on the cluster 
+2. run dataframe_from_jsons.py (compiles json files into a single dataframe and finds cre line, injection sizes, and tracer type)
+3. Run correlate_matches_by_source on cluster
+4. run dataframe_from_jsons_matches_by_source.py

@@ -1,0 +1,13 @@
+{
+    "match_id": 0, 
+    "fraction of match covered by td exclusion zone": 0, 
+    "pearson_correlation": 0, 
+    "fraction of match covered by td injection": 0, 
+    "distance": 0, 
+    "dice_coefficient": 0, 
+    "spearman_correlation": 0, 
+    "injection_overlap": 0, 
+    "image_series_id": 900250452, 
+    "source": "SSp-bfd", 
+    "exclusion_zone_overlap": 0
+}

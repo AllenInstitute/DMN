@@ -1,0 +1,27 @@
+{
+    "fraction of match covered by td injection": [
+        0.3883805891372449
+    ], 
+    "distance": [
+        530.3772242470448
+    ], 
+    "source": "SSp-tr", 
+    "spearman_correlation": [
+        0.6806870255574481
+    ], 
+    "pearson_correlation": [
+        0.6806870255574481
+    ], 
+    "absolute_overlap": [
+        7202.841215162296
+    ], 
+    "match_A": [
+        100141495
+    ], 
+    "injection_overlap": [
+        0.9490099621650883
+    ], 
+    "match_B": [
+        126852363
+    ]
+}

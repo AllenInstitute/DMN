@@ -1,0 +1,27 @@
+{
+    "fraction of match covered by td injection": [
+        0.014414126897992244
+    ], 
+    "distance": [
+        886.5100112237876
+    ], 
+    "source": "ECT", 
+    "spearman_correlation": [
+        0.09728529143131556
+    ], 
+    "pearson_correlation": [
+        0.004449385619997296
+    ], 
+    "absolute_overlap": [
+        550.1352477852663
+    ], 
+    "match_A": [
+        180403712
+    ], 
+    "injection_overlap": [
+        0.19853048211783078
+    ], 
+    "match_B": [
+        180435652
+    ]
+}

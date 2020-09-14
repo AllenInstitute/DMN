@@ -1,0 +1,29 @@
+{
+    "match_id": [
+        112514202
+    ], 
+    "fraction of match covered by td exclusion zone": [
+        0.788277678230149
+    ], 
+    "pearson_correlation": [
+        0.8045276085272864
+    ], 
+    "dataset": "wt", 
+    "fraction of match covered by td injection": [
+        0.23719640504425252
+    ], 
+    "distance": [
+        951.3148795220224
+    ], 
+    "spearman_correlation": [
+        0.8162889927040808
+    ], 
+    "injection_overlap": [
+        0.3992010790990176
+    ], 
+    "image_series_id": 623286726, 
+    "source": "ACAv", 
+    "exclusion_zone_overlap": [
+        0.38755687405599065
+    ]
+}

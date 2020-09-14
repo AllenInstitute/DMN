@@ -1,0 +1,31 @@
+{
+    "match_id": [
+        571410278
+    ], 
+    "fraction of match covered by td exclusion zone": [
+        0.9633457036958525
+    ], 
+    "pearson_correlation": [
+        0.8966924218741367
+    ], 
+    "fraction of match covered by td injection": [
+        0.4537232845203429
+    ], 
+    "distance": [
+        255.6307522914608
+    ], 
+    "dice_coefficient": [
+        0.665367019282239
+    ], 
+    "spearman_correlation": [
+        0.7862696342114824
+    ], 
+    "injection_overlap": [
+        0.4046959769805629
+    ], 
+    "image_series_id": 601885751, 
+    "source": "VISpor", 
+    "exclusion_zone_overlap": [
+        0.16055444556518927
+    ]
+}

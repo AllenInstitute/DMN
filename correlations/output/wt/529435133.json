@@ -1,0 +1,29 @@
+{
+    "match_id": [
+        157556400
+    ], 
+    "fraction of match covered by td exclusion zone": [
+        0.7499371577711417
+    ], 
+    "pearson_correlation": [
+        0.7722346671343631
+    ], 
+    "dataset": "wt", 
+    "fraction of match covered by td injection": [
+        0.11584011672625533
+    ], 
+    "distance": [
+        458.3666654546336
+    ], 
+    "spearman_correlation": [
+        0.6655079162347677
+    ], 
+    "injection_overlap": [
+        0.7952047517317726
+    ], 
+    "image_series_id": 529435133, 
+    "source": "ILA", 
+    "exclusion_zone_overlap": [
+        0.4031361456782907
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "sum_NPV_A": [], 
+    "sum_NPV_B": [], 
+    "pearson_correlation": [], 
+    "match_A": [], 
+    "fraction of match covered by td injection": [], 
+    "absolute_overlap": [], 
+    "distance": [], 
+    "absolute_overlap_lg_over_small": [], 
+    "spearman_correlation": [], 
+    "injection_overlap": [], 
+    "source": "POST", 
+    "match_B": []
+}

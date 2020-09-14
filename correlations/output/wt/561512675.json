@@ -1,0 +1,37 @@
+{
+    "match_id": [
+        100140949, 
+        100148142
+    ], 
+    "fraction of match covered by td exclusion zone": [
+        0.7450579313448701, 
+        1.0
+    ], 
+    "pearson_correlation": [
+        0.892149763097256, 
+        0.9371260191865827
+    ], 
+    "dataset": "wt", 
+    "fraction of match covered by td injection": [
+        0.04732427492759001, 
+        0.1973742187087442
+    ], 
+    "distance": [
+        685.1277253184255, 
+        241.24676163629638
+    ], 
+    "spearman_correlation": [
+        0.7543071598956519, 
+        0.7697367303683932
+    ], 
+    "injection_overlap": [
+        0.3400885020574156, 
+        0.8969693148896501
+    ], 
+    "image_series_id": 561512675, 
+    "source": "RSPv", 
+    "exclusion_zone_overlap": [
+        0.2878638591398144, 
+        0.3656487852414223
+    ]
+}

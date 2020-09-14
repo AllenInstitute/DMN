@@ -1,0 +1,40 @@
+{
+    "pearson_correlation": [
+        0.8161567913954673, 
+        0.5932588768588053
+    ], 
+    "match_A": [
+        166153483, 
+        166153483
+    ], 
+    "fraction of match covered by td injection": [
+        0.38435058665020944, 
+        0
+    ], 
+    "absolute_overlap": [
+        8356.770559670895, 
+        0
+    ], 
+    "number_of_filtered_datasets": 3, 
+    "distance": [
+        492.54441424099, 
+        1484.3853947004463
+    ], 
+    "absolute_overlap_lg_over_small": [
+        8559.626374705867, 
+        0
+    ], 
+    "spearman_correlation": [
+        0.8040863874968069, 
+        0.419865723358068
+    ], 
+    "injection_overlap": [
+        0.3462255996773169, 
+        0
+    ], 
+    "source": "AIv", 
+    "match_B": [
+        296048512, 
+        513773998
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "distance": [], 
+    "spearman_correlation": [], 
+    "source": "AM", 
+    "match_A": [], 
+    "pearson_correlation": [], 
+    "fraction of match covered by td injection": [], 
+    "td_group": 601900484, 
+    "injection_overlap": [], 
+    "match_B": []
+}

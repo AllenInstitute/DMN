@@ -1,0 +1,31 @@
+{
+    "pearson_correlation": [
+        0.9777527493291395
+    ], 
+    "match_A": [
+        100140756
+    ], 
+    "fraction of match covered by td injection": [
+        0.3252644241205813
+    ], 
+    "absolute_overlap": [
+        2405.910039306268
+    ], 
+    "number_of_filtered_datasets": 3, 
+    "distance": [
+        165.5294535724685
+    ], 
+    "absolute_overlap_lg_over_small": [
+        2371.755387829208
+    ], 
+    "spearman_correlation": [
+        0.8468347474640068
+    ], 
+    "injection_overlap": [
+        0.26180183651924666
+    ], 
+    "source": "FRP", 
+    "match_B": [
+        157710335
+    ]
+}

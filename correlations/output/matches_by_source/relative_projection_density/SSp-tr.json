@@ -1,0 +1,36 @@
+{
+    "match_A": [
+        100141495
+    ], 
+    "pearson_correlation": [
+        0.8772405347354952
+    ], 
+    "sum_NPD_B": [
+        3.316154118378046
+    ], 
+    "fraction of match covered by td injection": [
+        0.3883805891372449
+    ], 
+    "sum_NPD_A": [
+        1.001030112136826
+    ], 
+    "distance": [
+        530.3772242470448
+    ], 
+    "absolute_overlap": [
+        7202.841215162296
+    ], 
+    "absolute_overlap_lg_over_small": [
+        9335.525803749388
+    ], 
+    "spearman_correlation": [
+        0.8613896881928393
+    ], 
+    "injection_overlap": [
+        0.9490099621650883
+    ], 
+    "source": "SSp-tr", 
+    "match_B": [
+        126852363
+    ]
+}

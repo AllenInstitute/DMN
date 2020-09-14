@@ -1,0 +1,44 @@
+{
+    "pearson_correlation_npd": [], 
+    "match_A": [
+        152994878, 
+        152994878, 
+        152994878, 
+        100148443
+    ], 
+    "fraction of match covered by td injection": [
+        0, 
+        0, 
+        0, 
+        0
+    ], 
+    "spearman_correlation_npd": [], 
+    "spearman_correlation_npv": [], 
+    "distance": [], 
+    "absolute_overlap": [
+        0, 
+        0, 
+        0, 
+        0
+    ], 
+    "absolute_overlap_lg_over_small": [
+        0, 
+        0, 
+        0, 
+        0
+    ], 
+    "injection_overlap": [
+        0, 
+        0, 
+        0, 
+        0
+    ], 
+    "source": "ProS", 
+    "match_B": [
+        157063781, 
+        100148443, 
+        127795906, 
+        127795906
+    ], 
+    "pearson_correlation_npv": []
+}

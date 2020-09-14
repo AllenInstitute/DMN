@@ -1,0 +1,14 @@
+{
+    "match_A": [], 
+    "pearson_correlation": [], 
+    "sum_NPD_B": [], 
+    "fraction of match covered by td injection": [], 
+    "sum_NPD_A": [], 
+    "distance": [], 
+    "absolute_overlap": [], 
+    "absolute_overlap_lg_over_small": [], 
+    "spearman_correlation": [], 
+    "injection_overlap": [], 
+    "source": "CLA", 
+    "match_B": []
+}

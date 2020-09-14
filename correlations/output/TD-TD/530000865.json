@@ -1,0 +1,49 @@
+{
+    "match_id": [
+        527390805, 
+        528512680, 
+        527393013
+    ], 
+    "fraction of match covered by td exclusion zone": [
+        0, 
+        0, 
+        0.47913600115258487
+    ], 
+    "pearson_correlation": [
+        -0.004630728247119952, 
+        0.8695810622408519, 
+        0.48160548401027076
+    ], 
+    "fraction of match covered by td injection": [
+        0, 
+        0, 
+        0.12445925363245629
+    ], 
+    "distance": [
+        2340.9382729153735, 
+        1676.3435621512633, 
+        410.171316455135
+    ], 
+    "dice_coefficient": [
+        0.0, 
+        0.0, 
+        0.23135966902255464
+    ], 
+    "spearman_correlation": [
+        0.05700659575304217, 
+        0.7019664316948964, 
+        0.536158729696837
+    ], 
+    "injection_overlap": [
+        0, 
+        0, 
+        0.3824519495332223
+    ], 
+    "image_series_id": 530000865, 
+    "source": "ENTm", 
+    "exclusion_zone_overlap": [
+        0, 
+        0, 
+        0.21940780606337904
+    ]
+}

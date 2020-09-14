@@ -1,0 +1,29 @@
+{
+    "match_id": [
+        100140949
+    ], 
+    "fraction of match covered by td exclusion zone": [
+        0.0008001296576646839
+    ], 
+    "pearson_correlation": [
+        0.967829030684243
+    ], 
+    "dataset": "wt", 
+    "fraction of match covered by td injection": [
+        0
+    ], 
+    "distance": [
+        730.8214556237385
+    ], 
+    "spearman_correlation": [
+        0.8125011275834013
+    ], 
+    "injection_overlap": [
+        0
+    ], 
+    "image_series_id": 571647261, 
+    "source": "RSPv", 
+    "exclusion_zone_overlap": [
+        0.0018836125701811655
+    ]
+}

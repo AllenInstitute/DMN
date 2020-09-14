@@ -1,0 +1,36 @@
+{
+    "image_series_id": 484612961, 
+    "distance": [
+        796.8419340369145, 
+        210.05982504468943
+    ], 
+    "exclusion_zone_overlap": [
+        0.0033688686582608427, 
+        0.9846809819816565
+    ], 
+    "match_id": [
+        146553971, 
+        180435652
+    ], 
+    "fraction of match covered by td exclusion zone": [
+        0.0006919106608060293, 
+        0.17361712691924128
+    ], 
+    "source": "ECT", 
+    "pearson_correlation": [
+        0.49940574169397994, 
+        0.8027180765179041
+    ], 
+    "spearman_correlation": [
+        0.48744159339074195, 
+        0.6368467346591627
+    ], 
+    "injection_overlap": [
+        0, 
+        0.9894080714524909
+    ], 
+    "fraction of match covered by td injection": [
+        0, 
+        0.0368204650884838
+    ]
+}

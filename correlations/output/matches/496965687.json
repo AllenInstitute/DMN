@@ -1,0 +1,25 @@
+{
+    "distance": [
+        464.0043103248072
+    ], 
+    "spearman_correlation": [
+        0.8358439148135629
+    ], 
+    "source": "PR", 
+    "match_A": [
+        170784358
+    ], 
+    "pearson_correlation": [
+        0.7315525896730399
+    ], 
+    "fraction of match covered by td injection": [
+        0.8591707423846623
+    ], 
+    "td_group": 496965687, 
+    "injection_overlap": [
+        0.5435503976802493
+    ], 
+    "match_B": [
+        265286700
+    ]
+}
