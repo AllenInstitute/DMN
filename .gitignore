@@ -7,3 +7,4 @@ structure_masks/
 *.json
 *.h5
 */*.h5
+cortical_projections/*.h5
