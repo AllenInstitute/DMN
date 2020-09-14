@@ -7,4 +7,6 @@ structure_masks/
 *.json
 *.h5
 */*.h5
-cortical_projections/*.h5
+cortical_projections/surface_paths_10.h5
+cortical_projections/flatmap_lookup.h5
+cortical_projections/top.h5
