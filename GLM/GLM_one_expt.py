@@ -22,7 +22,7 @@ sns.set_style('white')
 import matplotlib as mpl
 mpl.rcParams['pdf.fonttype'] = 42
 
-mcc = MouseConnectivityCache(manifest_file='../connectivity/mouse_connectivity_manifest.json',
+mcc = MouseConnectivityCache(manifest_file='connectivity/mouse_connectivity_manifest.json',
                             resolution=100)
 mca = MouseConnectivityApi()
 structure_tree = mcc.get_structure_tree()
@@ -118,9 +118,9 @@ ctx_experiments = pd.concat([ctx_experiments, cre_experiments])
 
 # DMN maksks
 if platform.system() == 'Windows':
-    path = r'C:\Users\jenniferwh\Dropbox (Allen Institute)\Mesoscale Connectome Papers in Progress\2019 DMN'
+    path = r'C:\Users\jenniferwh\Dropbox (Allen Institute)\2019 DMN'
 elif platform.system() == 'Darwin':
-    path = r'/Users/jenniferwh/Dropbox (Allen Institute)/Mesoscale Connectome Papers in Progress/2019 DMN'
+    path = r'/Users/jenniferwh/Dropbox (Allen Institute)/2019 DMN'
 outpath = os.path.join(path, 'data_files')
 masks, _ = nrrd.read(os.path.join(path, 'fMRI_masks', 'dmn_mask_and_core.nrrd'))
 dmn_mask = np.zeros(masks.shape)
@@ -133,7 +133,7 @@ in_or_out = shrink_to_mask( dmn_mask, iso_mask)
 in_or_out_core = shrink_to_mask(core_mask, iso_mask)
 
 # calculate centroids & distances
-for exp in [180436360]: #125833030 in #180436360  out
+for exp in [156671933]: #125833030 in #180436360  out 268038969 Scnn1a 309515141 Efr3a 100141599 VISam WT 156671933 Ntsr1
 
     #print "\n=============    Experiment {}    =============  ".format(exp['id'])
     
@@ -168,7 +168,7 @@ d_coeff, dmn_coeff, tvals, pvals, yvals, prediction  = fit_glm(in_or_out, [dista
 
 
 #%% Plot
-outpath = r'/Users/jenniferwh/Dropbox (Allen Institute)/Mesoscale Connectome Papers in Progress/2019 DMN/_new_figures/Figure_S2'
+outpath = r'/Users/jenniferwh/Dropbox (Allen Institute)/2019 DMN/_Manuscript drafts/Neuron Resubmission'
 
 fig, ax = plt.subplots(figsize = (1.5, 1.5))
 #in_or_out = bool(in_or_out)
@@ -194,5 +194,5 @@ plt.legend(loc = 1, fontsize = 5)
 
 #sns.scatterplot(distance, in_or_out)
 #everything on zorder -1 or lower will be rasterized
-plt.savefig(os.path.join(outpath, 'wt_out_GLM_example.pdf'), type = 'pdf',
+plt.savefig(os.path.join(outpath, 'Ntsr1_GLM_example.pdf'), type = 'pdf',
             bbox_inches='tight', transparent=True, dpi=300)

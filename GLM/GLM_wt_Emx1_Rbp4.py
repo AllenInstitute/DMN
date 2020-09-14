@@ -117,9 +117,13 @@ elif platform.system() == 'Darwin':
 outpath = os.path.join(path, 'data_files')
 masks, _ = nrrd.read(os.path.join(path, 'fMRI_masks', 'dmn_mask_and_core.nrrd'))
 dmn_mask = np.zeros(masks.shape)
-dmn_mask[np.where(masks > 0)] = 1
+dmn_mask[np.where(masks == 1)] = 2
+dmn_mask[np.where(masks == 0)] = 1
+dmn_mask[np.where(masks == 2)] = 0
 core_mask = np.zeros(masks.shape)
-core_mask[np.where(masks == 2)] = 1
+core_mask[np.where(masks == 1)] = 0
+core_mask[np.where(masks == 0)] = 1
+core_mask[np.where(masks == 2)] = 0
 
 # get vector of values inside iso_mask
 in_or_out = shrink_to_mask( dmn_mask, iso_mask)
@@ -198,13 +202,13 @@ ctx_glm_dat = pd.DataFrame({'id': ctx_experiments['id'],
                        'DMN coefficient': dmn_coeff,
                        'DMN t values': tvals,
                        'DMN p values': pvals,
-                       'injection core fraction': core_inj_ratios,
+                       'injection core fraction': core_inj_ratios,  
                        'projection core fraction': core_proj_ratios,
                        'core distance coefficient': d_coeff_core,
                        'DMN core coefficient': dmn_coeff_core,
                        'core t values': tvals_core,
                        'core p values': pvals_core})
-ctx_glm_dat.to_csv(os.path.join(outpath, 'wt_cre_ctx_injections_DMN_and_core_projections_coefficients.csv'),
+ctx_glm_dat.to_csv(os.path.join(outpath, 'wt_cre_ctx_injections_DMN_and_core_projections_coefficients_inverse.csv'),
               index = False)
 
 #%% PLot

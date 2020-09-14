@@ -12,6 +12,7 @@ import statsmodels.api as sm
 from statsmodels.graphics.api import abline_plot
 from allensdk.core.mouse_connectivity_cache import MouseConnectivityCache
 from allensdk.api.queries.mouse_connectivity_api import MouseConnectivityApi
+import matplotlib.pyplot as plt
 
 mcc = MouseConnectivityCache(manifest_file='../connectivity/mouse_connectivity_manifest.json',
                             resolution=100)
