@@ -9,11 +9,10 @@ import pandas as pd
 import numpy as np
 from allensdk.core.mouse_connectivity_cache import MouseConnectivityCache
 import h5py
-import argparse
 import json
     
 def get_top_centroid_coord(x,y,z,volume_shape,radius):
-    path = r'/allen/programs/celltypes/workgroups/mousecelltypes/T503_Connectivity_in_Alzheimer_Mice/Jennifer/cluster_code/cortical_projections'
+    path = r'/Users/jenniferwh/Dropbox (Personal)/2019 DMN/python_code/DMN/cortical_projections'
     with h5py.File(os.path.join(path, 'surface_paths_10.h5'), 'r') as f:
         path_lookup = f['volume lookup'][()]
         paths = f['paths'][()]
@@ -34,8 +33,8 @@ def get_top_centroid_coord(x,y,z,volume_shape,radius):
     
     return np.round(np.mean(np.where(flat_blank),axis=1)).astype(int)
 
-def main():
-    path = r'/allen/programs/celltypes/workgroups/mousecelltypes/T503_Connectivity_in_Alzheimer_Mice/Jennifer/cluster_code/cortical_projections'
+def main(isid):
+    path = r'/Users/jenniferwh/Dropbox (Personal)/2019 DMN/python_code/DMN/cortical_projections'
     mcc = MouseConnectivityCache(manifest_file='../connectivity/mouse_connectivity_manifest.json',
                                  resolution=10)
     avg,meta = mcc.get_template_volume()
@@ -53,12 +52,8 @@ def main():
                  566992832, 272930013, 304762965, 266250904, 114399224, 286483411, 286417464,
                  593277684, 546103149, 642809043, 286483411, 304564721] #VISp outlier excluded
     ctx_exps = ctx_exps[~ctx_exps['id'].isin(fail_expts)]
-    subset = ctx_exps[ctx_exps['id'] == args.image_series_id]
+    subset = ctx_exps[ctx_exps['id'] == isid]
     # Put all injections in left hemisphere but keep track of where they started
-    flipped = False
-    if subset['injection_z'].values[0] > 5700:
-        flipped = True
-        subset.loc[subset['id'] == args.image_series_id, 'injection_z'] = subset['injection_z'] - 5700
     x,y,z = (subset[['injection_x','injection_y','injection_z']]/10).astype(int).values[0]
     top_centroid = get_top_centroid_coord(x,y,z,avg.shape,1)
     if top_centroid[0] < 0:
@@ -69,17 +64,11 @@ def main():
                 top_centroid = get_top_centroid_coord(x,y,z,avg.shape,j*10)
             else:
                 top_centroid = get_top_centroid_coord(x,y,z,avg.shape,j)
-    if flipped:
-        top_centroid[0] = 570+(570-top_centroid[0])
-    centroids = {'id': args.image_series_id,
+    centroids = {'id': float(isid),
                  'top_x': float(top_centroid[0]),
                  'top_y': float(top_centroid[1])}   
-    with open(os.path.join(path, 'output', '{}.json'.format(args.image_series_id)), 'w') as outfile:
+    with open(os.path.join(path, 'output', 'cortical_projection_coordinates', '{}.json'.format(isid)), 'w') as outfile:
         json.dump(centroids, outfile, sort_keys = False, indent = 4)
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('image_series_id', type = int, help='image series id')
-    args = parser.parse_args()
-
     main()
