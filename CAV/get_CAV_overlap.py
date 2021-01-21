@@ -9,7 +9,7 @@ import numpy as np
 import nrrd
 from allensdk.core.mouse_connectivity_cache import MouseConnectivityCache
 
-path = r'\\allen\programs\celltypes\workgroups\mousecelltypes\T503_Connectivity_in_Alzheimer_Mice\Jennifer\DMN_paper\downsampled_CAV\grid'
+path = r'DMN_paper\downsampled_CAV\grid'
 mcc = MouseConnectivityCache(manifest_file = '..connectivity/mouse_connectivity_manifest.json')
 experiments = [521955016, 617898760, 532005897]
 for n in np.arange(0, len(experiments)):
