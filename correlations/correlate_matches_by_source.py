@@ -15,7 +15,7 @@ import json
 import argparse
 
 def main():
-    path = '/allen/programs/celltypes/workgroups/mousecelltypes/T503_Connectivity_in_Alzheimer_Mice/Jennifer/cluster_code/correlations'
+    path = 'cluster_code/correlations'
     
     mcc = MouseConnectivityCache(manifest_file='connectivity/mouse_connectivity_manifest.json')
     aapi = AnatomyApi()
