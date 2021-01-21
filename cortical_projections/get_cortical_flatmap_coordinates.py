@@ -7,12 +7,12 @@ Created on Wed Jan 22 15:13:46 2020
 import sys
 import platform
 if platform.system() == 'Linux':
-    sys.path.append(r'/allen/programs/celltypes/workgroups/mousecelltypes/T503_Connectivity_in_Alzheimer_Mice/Jennifer/cluster_code/pbstools')
+    sys.path.append(r'cluster_code/pbstools')
 from pbstools import PythonJob
-python_file = r"/allen/programs/celltypes/workgroups/mousecelltypes/T503_Connectivity_in_Alzheimer_Mice/Jennifer/cluster_code/cortical_projections/get_cortical_projection_coords.py"
+python_file = r"cluster_code/cortical_projections/get_cortical_projection_coords.py"
 
 
-jobdir = '/allen/programs/celltypes/workgroups/mousecelltypes/T503_Connectivity_in_Alzheimer_Mice/Jennifer/cluster_code/cluster_out'
+jobdir = 'cluster_code/cluster_out'
 
 job_settings = {'queue': 'celltypes',
                 'jobdir': jobdir,
