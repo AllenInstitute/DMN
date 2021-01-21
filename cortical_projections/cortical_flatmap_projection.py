@@ -12,7 +12,7 @@ import h5py
 import json
     
 def get_top_centroid_coord(x,y,z,volume_shape,radius):
-    path = r'/Users/jenniferwh/Dropbox (Personal)/2019 DMN/python_code/DMN/cortical_projections'
+    path = r'2019 DMN/python_code/DMN/cortical_projections'
     with h5py.File(os.path.join(path, 'surface_paths_10.h5'), 'r') as f:
         path_lookup = f['volume lookup'][()]
         paths = f['paths'][()]
@@ -34,7 +34,7 @@ def get_top_centroid_coord(x,y,z,volume_shape,radius):
     return np.round(np.mean(np.where(flat_blank),axis=1)).astype(int)
 
 def main(isid):
-    path = r'/Users/jenniferwh/Dropbox (Personal)/2019 DMN/python_code/DMN/cortical_projections'
+    path = r'2019 DMN/python_code/DMN/cortical_projections'
     mcc = MouseConnectivityCache(manifest_file='../connectivity/mouse_connectivity_manifest.json',
                                  resolution=10)
     avg,meta = mcc.get_template_volume()
