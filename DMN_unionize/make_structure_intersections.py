@@ -67,7 +67,7 @@ def find_names(structures, kind = 'name'): #Finds name or acronym for list of st
     return strnames
 
 if platform.system() == 'Darwin':      
-    path = r'/Users/jenniferwh/Dropbox (Allen Institute)/Mesoscale Connectome Papers in Progress/2018 DMN/fMRI masks/dmn_mask_and_core.nrrd'
+    path = r'dmn_mask_and_core.nrrd'
 elif platform.system() == 'Windows':
-    path = r'C:\Users\jenniferwh\Dropbox (Allen Institute)\Mesoscale Connectome Papers in Progress\2018 DMN\fMRI masks\dmn_mask_and_core.nrrd'
+    path = r'dmn_mask_and_core.nrrd'
 make_structure_intersections(path)
