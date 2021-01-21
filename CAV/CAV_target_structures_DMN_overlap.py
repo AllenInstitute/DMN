@@ -11,16 +11,17 @@ import nrrd
 from anatomy.anatomy_api import AnatomyApi
 import scipy.ndimage as ndimage
 
-path = r'C:\Users\jenniferwh\Dropbox (Allen Institute)\Mesoscale Connectome Papers in Progress\2019 DMN\Figure 6 target-defined matrix'
-maskpath = r'C:\Users\jenniferwh\Dropbox (Allen Institute)\Mesoscale Connectome Papers in Progress\2019 DMN\fMRI masks'
-savepath = r'C:\Users\jenniferwh\Dropbox (Allen Institute)\Mesoscale Connectome Papers in Progress\2019 DMN\Data files'
+# paths are old
+path = r'2019 DMN\Figure 6 target-defined matrix'
+maskpath = r'2019 DMN\fMRI masks'
+savepath = r'2019 DMN\Data files'
 
 from allensdk.core.mouse_connectivity_cache import MouseConnectivityCache
 resolution = 100 #100 um for fMRI overlap
 mcc = MouseConnectivityCache(manifest_file='../connectivity/mouse_connectivity_manifest.json',
                             resolution=resolution)
 # Downsampled CAV grids are stored in my network folder
-cav_basepath = r'\\allen\programs\celltypes\workgroups\mousecelltypes\T503_Connectivity_in_Alzheimer_Mice\Jennifer\DMN_paper'
+cav_basepath = r'DMN_paper'
 cav_dir = os.path.join(cav_basepath, 'downsampled_CAV', 'grid') # Note the rabies polylgons are in this directory as well
 structure_dir = os.path.join(cav_basepath, 'structure_masks')
 
@@ -49,7 +50,7 @@ fmri2, _ = nrrd.read(os.path.join(mask_dir, 'fmri_2_mask.nrrd'))
 
 aapi = AnatomyApi()
 CAVis = aapi.get_image_series_by_workflow([471789262, 304950893])
-td_dataset = pd.read_csv(r'C:\Users\jenniferwh\Dropbox (Allen Institute)\Mesoscale Connectome Papers in Progress\2019 DMN\target_defined_dataset.csv')
+td_dataset = pd.read_csv(r'2019 DMN\target_defined_dataset.csv')
 
 good_experiments = td_dataset[td_dataset['include'] != 'no']['image_series_id'].unique()
 CAVis = [isid for isid in CAVis if isid in good_experiments]
@@ -289,7 +290,7 @@ def fit_glm_CAV_removed(categorical_var, distances, projections):
     return coeff1, coeff2, tvals, pvals  
 
 #%%
-cav_basepath = r'\\allen\programs\celltypes\workgroups\mousecelltypes\T503_Connectivity_in_Alzheimer_Mice\Jennifer\DMN_paper'
+cav_basepath = r'DMN_paper'
 # calculate centroids & distances
 centroids = []
 ratios_in = []
