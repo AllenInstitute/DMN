@@ -15,9 +15,9 @@ import matplotlib.pyplot as plt
 
 import platform
 if platform.system() == 'Darwin':
-    path = r'/Users/jenniferwh/Dropbox/DMN data/layers'
+    path = r'DMN data/layers'
 elif platform.system() == 'Windows':
-    path = r'C:\Users\jenniferwh\Dropbox (Personal)\DMN data\layers' 
+    path = r'DMN data\layers' 
     
 from allensdk.core.mouse_connectivity_cache import MouseConnectivityCache
 mcc = MouseConnectivityCache(manifest_file = 'connectivity/mouse_connectivity_manifest.json')
