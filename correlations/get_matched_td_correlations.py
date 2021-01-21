@@ -73,10 +73,10 @@ def main():
     ctx_ss = [strid for strid in iso if strid in ss]
     hpf_ss = [strid for strid in hipp_desc if strid in ss]
     if platform.system() == 'Windows':
-        td_experiments = pd.read_csv(r'\\allen\programs\celltypes\workgroups\mousecelltypes\T503_Connectivity_in_Alzheimer_Mice\Jennifer\cluster_code\correlations\target_defined_dataset.csv',
+        td_experiments = pd.read_csv(r'cluster_code\correlations\target_defined_dataset.csv',
                                      engine = 'python')
     else:
-        td_experiments = pd.read_csv(r'/allen/programs/celltypes/workgroups/mousecelltypes/T503_Connectivity_in_Alzheimer_Mice/Jennifer/cluster_code/correlations/target_defined_dataset.csv',
+        td_experiments = pd.read_csv(r'cluster_code/correlations/target_defined_dataset.csv',
                               engine = 'python')
     td_experiments = td_experiments[td_experiments['include'] == 'yes']
     for ix, row in td_experiments.iterrows():
@@ -89,11 +89,11 @@ def main():
     new_experiments = [900250452, 868641659]
     if args.id in new_experiments:
         if platform.system() == 'Windows':
-            unionize_path = os.path.join(r'\\allen\programs\celltypes\workgroups\mousecelltypes\T503_Connectivity_in_Alzheimer_Mice\Jennifer\DMN_paper\alternative_unionizes',
+            unionize_path = os.path.join(r'DMN_paper\alternative_unionizes',
                                          'experiment_{0}'.format(str(args.id)), 
                                          'output.json') #new data not online yet
         else:
-            unionize_path = os.path.join(r'/allen/programs/celltypes/workgroups/mousecelltypes/T503_Connectivity_in_Alzheimer_Mice/Jennifer/DMN_paper/alternative_unionizes',
+            unionize_path = os.path.join(r'DMN_paper/alternative_unionizes',
                                          'experiment_{0}'.format(str(args.id)), 
                                          'output.json') #new data not online yet
         with open(unionize_path, 'r') as jsonfile:
@@ -168,11 +168,11 @@ def main():
     for isid in matches['image_series_id'].unique():
         if isid in new_experiments:
             if platform.system() == 'Windows':
-                unionize_path = os.path.join(r'\\allen\programs\celltypes\workgroups\mousecelltypes\T503_Connectivity_in_Alzheimer_Mice\Jennifer\DMN_paper\alternative_unionizes',
+                unionize_path = os.path.join(r'DMN_paper\alternative_unionizes',
                                          'experiment_{0}'.format(str(isid)), 
                                          'output.json') #new data not online yet
             else:
-                unionize_path = os.path.join(r'/allen/programs/celltypes/workgroups/mousecelltypes/T503_Connectivity_in_Alzheimer_Mice/Jennifer/DMN_paper/alternative_unionizes',
+                unionize_path = os.path.join(r'DMN_paper/alternative_unionizes',
                                          'experiment_{0}'.format(str(isid)), 
                                          'output.json') #new data not online yet
             with open(unionize_path, 'r') as jsonfile:
@@ -356,9 +356,9 @@ def main():
            'spearman_correlation': 0, 
            'pearson_correlation': 0,
            'source': source_abbrev}
-    savepath = '/allen/programs/celltypes/workgroups/mousecelltypes/T503_Connectivity_in_Alzheimer_Mice/Jennifer/cluster_code/correlations/output/TD-TD'
+    savepath = 'cluster_code/correlations/output/TD-TD'
     if platform.system() == 'Windows':
-        savepath = r'\\allen\programs\celltypes\workgroups\mousecelltypes\T503_Connectivity_in_Alzheimer_Mice\Jennifer\cluster_code\correlations\output\TD-TD'
+        savepath = r'cluster_code\correlations\output\TD-TD'
     with open(os.path.join(savepath, '{}.json'.format(args.id)), 'w') as outfile:
         json.dump(dat, outfile, sort_keys = False, indent = 4, cls = MyEncoder)
     print(dat)
