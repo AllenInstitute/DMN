@@ -25,13 +25,13 @@ from nileg_utilities.filesystem import safe_makedirs
 def main():
     
     config_path = safe_system_path(os.path.join(    
-        r'\\AIBSDATA\mousecelltypes\T503_Connectivity_in_Alzheimer_Mice\Jennifer\fMRI data from Alessandro\fMRI CCF overlap improved registration\CAV unionize\inputs\configs', args.config_path))
+        r'CAV unionize\inputs\configs', args.config_path))
     with open(config_path, 'rb') as cfgf:
         config = json.load(cfgf)
     
     fmri_values = [0, 1, 2, 3, 4]
-    base_sm_path = r'\\AIBSDATA\mousecelltypes\T503_Connectivity_in_Alzheimer_Mice\Jennifer\fMRI data from Alessandro\fMRI CCF overlap improved registration\CAV unionize\inputs\scoremaps'
-    base_top_level = r'\\AIBSDATA\mousecelltypes\T503_Connectivity_in_Alzheimer_Mice\Jennifer\fMRI data from Alessandro\fMRI CCF overlap improved registration\CAV unionize\outputs'
+    base_sm_path = r'CAV unionize\inputs\scoremaps'
+    base_top_level = r'CAV unionize\outputs'
 
     top_level = base_top_level
     safe_makedirs(top_level)
