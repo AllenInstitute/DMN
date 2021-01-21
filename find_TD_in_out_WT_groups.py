@@ -26,7 +26,7 @@ ctx_strs = [ai_map[structure] for structure in iso]
 
 import platform
 if platform.system() == 'Darwin':
-    basepath = '/Users/jenniferwh/Dropbox (Allen Institute)/Mesoscale Connectome Papers in Progress/2019 DMN'
+    basepath = '2019 DMN'
 elif platform.system() == 'Windows':
     basepath = ''
 datpath = os.path.join(basepath, 'data_files')
