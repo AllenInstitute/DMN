@@ -14,7 +14,7 @@ from anatomy.anatomy_api import AnatomyApi
 
 
 #Compile wt data
-path = r'\\allen\programs\celltypes\workgroups\mousecelltypes\T503_Connectivity_in_Alzheimer_Mice\Jennifer\cluster_code\correlations\output\matches_by_source\NPV'
+path = r'cluster_code\correlations\output\matches_by_source\NPV'
 df = pd.DataFrame()
 for filename in os.listdir(path):
     print(filename)
@@ -125,4 +125,4 @@ df2['same_secondary'] = df2['match_A_secondary_source'] == df2['match_B_secondar
 df2['same secondary for <60% primary'] = (df2['match_A_percent_primary'] < 0.5)  | (
         df2['match_B_percent_primary'] < 0.5) & (df2['same_primary']) & (df2['same_secondary'])
                 
-df2.to_csv(r'C:\Users\jenniferwh\Dropbox\DMN data\correlations\match_correlations_by_source_NPV_dice.csv', index = False)
+df2.to_csv(r'DMN data\correlations\match_correlations_by_source_NPV_dice.csv', index = False)
