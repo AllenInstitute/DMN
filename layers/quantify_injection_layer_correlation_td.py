@@ -49,7 +49,7 @@ for isid in dat['image_series_id'].unique():
         anchor_unionize = mcc.get_structure_unionizes([isid], is_injection = True,
                                        structure_ids = ids, hemisphere_ids = [3])
     except:
-        unionize_path = os.path.join(r'/Users/jenniferwh/Dropbox (Allen Institute)/Mesoscale Connectome Papers in Progress/2019 DMN/data_files/alternative_unionizes',
+        unionize_path = os.path.join(r'2019 DMN/data_files/alternative_unionizes',
                                  'experiment_{0}'.format(str(isid)), 
                                  'output.json') #new data not online yet
         if not os.path.isfile(unionize_path): #subcortical, non-hippocampal injections
@@ -156,7 +156,7 @@ for isid in ENTdat['image_series_id'].unique():
         anchor_unionize = mcc.get_structure_unionizes([isid], is_injection = True,
                                        structure_ids = ids, hemisphere_ids = [3])
     except:
-        unionize_path = os.path.join(r'/Users/jenniferwh/Dropbox (Allen Institute)/Mesoscale Connectome Papers in Progress/2019 DMN/data_files/alternative_unionizes',
+        unionize_path = os.path.join(r'2019 DMN/data_files/alternative_unionizes',
                                      'experiment_{0}'.format(str(isid)),
                                      'output.json') #new data not online yet
     else:
