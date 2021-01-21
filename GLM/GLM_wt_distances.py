@@ -55,7 +55,7 @@ iso_mask = mcc.get_structure_mask(iso['id'])[0]
 # grab some experiments
 ctx_experiments = mcc.get_experiments(cre=False, 
                                        injection_structure_ids=[iso['id']])
-dmn_path = r'\\allen\programs\celltypes\workgroups\mousecelltypes\T503_Connectivity_in_Alzheimer_Mice\Jennifer\DMN paper\fMRI data from Alessandro\fMRI_ICA_map'
+dmn_path = r'DMN paper\fMRI data from Alessandro\fMRI_ICA_map'
 dmn_mask, _ = nrrd.read(os.path.join(dmn_path, 'dmn_mask_z_1_allen_masked_sym.nrrd'))
 
 # get vector of values inside iso_mask
