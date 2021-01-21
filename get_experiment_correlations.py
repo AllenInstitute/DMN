@@ -12,7 +12,7 @@ from anatomy.anatomy_api import AnatomyApi
 import scipy.stats as st
 import os
 
-path = r'/Users/jenniferwh/Dropbox/DMN data/spearman_r'
+path = r'DMN data/spearman_r'
 
 mcc = MouseConnectivityCache(manifest_file='connectivity/mouse_connectivity_manifest.json')
 aapi = AnatomyApi()
