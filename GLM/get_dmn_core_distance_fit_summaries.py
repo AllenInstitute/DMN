@@ -18,9 +18,9 @@ mca = MouseConnectivityApi()
 structure_tree = mcc.get_structure_tree()
 
 if platform.system() == 'Windows':
-    path = r'C:\Users\jenniferwh\Dropbox (Allen Institute)\Mesoscale Connectome Papers in Progress\2019 DMN'
+    path = r'2019 DMN'
 elif platform.system() == 'Darwin':
-    path = r'/Users/jenniferwh/Dropbox (Allen Institute)/Mesoscale Connectome Papers in Progress/2019 DMN'
+    path = r'2019 DMN'
 datpath = os.path.join(path, 'data_files')
 dat = pd.read_csv(os.path.join(datpath, 
                 'wt_cre_ctx_injections_DMN_and_core_projections_coefficients.csv'))
