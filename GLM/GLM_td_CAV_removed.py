@@ -101,10 +101,10 @@ iso_mask = mcc.get_structure_mask(iso['id'])[0]
 
 # DMN maksks
 if platform.system() == 'Windows':
-    path = r'C:\Users\jenniferwh\Dropbox (Allen Institute)\Mesoscale Connectome Papers in Progress\2019 DMN'
-    cav_basepath = r'\\allen\programs\celltypes\workgroups\mousecelltypes\T503_Connectivity_in_Alzheimer_Mice\Jennifer\DMN_paper'
+    path = r'2019 DMN'
+    cav_basepath = r'DMN_paper'
 elif platform.system() == 'Darwin':
-    path = r'/Users/jenniferwh/Dropbox (Allen Institute)/Mesoscale Connectome Papers in Progress/2019 DMN'
+    path = r'2019 DMN'
 outpath = os.path.join(path, 'data_files')
 # grab some experiments
 td_experiments = pd.read_csv(os.path.join(path, 'target_defined_dataset.csv'))
