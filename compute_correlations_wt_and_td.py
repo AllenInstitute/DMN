@@ -15,11 +15,11 @@ import scipy.stats as stats
 from scipy.optimize import curve_fit
 import platform
 if platform.system() == 'Darwin':
-    path = '/Users/jenniferwh/Dropbox/DMN data/correlations/_final'
-    paperpath = r'/Users/jenniferwh/Dropbox (Allen Institute)/Mesoscale Connectome Papers in Progress/2019 DMN'
+    path = 'DMN data/correlations/_final'
+    paperpath = r'2019 DMN'
 elif platform.system() == 'Windows':
-    path = r'C:\Users\jenniferwh\Dropbox\DMN data\correlations\_final'
-    paperpath = r'C:\Users\jenniferwh\Dropbox (Allen Institute)\Mesoscale Connectome Papers in Progress\2019 DMN'
+    path = r'DMN data\correlations\_final'
+    paperpath = r'2019 DMN'
 savepath = os.path.join(paperpath, '_new_figures', 'Figure_5')
 
 #%% Data curation
