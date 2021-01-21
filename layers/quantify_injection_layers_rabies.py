@@ -18,9 +18,9 @@ ia_map = st.get_id_acronym_map()
 ai_map = {value:key for key,value in ia_map.items()}
 import platform
 if platform.system() == 'Windows':
-    path = r'C:\Users\jenniferwh\Dropbox (Allen Institute)\Mesoscale Connectome Papers in Progress\2019 DMN\_new_figures\Figure_5'
+    path = r'2019 DMN\_new_figures\Figure_5'
 else:
-    path = r'/Users/jenniferwh/Dropbox (Allen Institute)/Mesoscale Connectome Papers in Progress/2019 DMN/_new_figures/Figure_5'
+    path = r'2019 DMN/_new_figures/Figure_5'
 dat = pd.read_csv(os.path.join(path, 'rabies_matches_for_td.csv'))
 ss = aapi.get_summary_structure_data('id')
 isocortex = st.get_structures_by_acronym(['Isocortex'])[0]
@@ -55,11 +55,11 @@ for isid in dat['id'].unique():
                                        structure_ids = ids, hemisphere_ids = [3])
     except:
         if platform.system() == 'Windows':
-            unionize_path = os.path.join(r'C:\Users\jenniferwh\Dropbox (Allen Institute)\Mesoscale Connectome Papers in Progress\2019 DMN\data_files\alternative_unionizes',
+            unionize_path = os.path.join(r'2019 DMN\data_files\alternative_unionizes',
                                          'experiment_{0}'.format(str(isid)),
                                          'output.json')
         else:
-            unionize_path = os.path.join(r'/Users/jenniferwh/Dropbox (Allen Institute)/Mesoscale Connectome Papers in Progress/2019 DMN/data_files/alternative_unionizes',
+            unionize_path = os.path.join(r'2019 DMN/data_files/alternative_unionizes',
                                  'experiment_{0}'.format(str(isid)), 
                                  'output.json') #new data not online yet
         with open(unionize_path, 'r') as jsonfile:
