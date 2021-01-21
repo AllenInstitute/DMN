@@ -77,8 +77,8 @@ def get_ssnames():
     return [[st['id'], st['name']] for st in oapi.get_structures(structure_set_names = "'Brain – Summary Structures'")]  
     
 #%%
-basepath = r'C:\Users\jenniferwh\Dropbox (Allen Institute)\Mesoscale Connectome Papers in Progress\2019 DMN\Data files'
-intersect_path = r'C:\Users\jenniferwh\Dropbox (Personal)\python_code\jenniferwh\DMN\structure_intersections'
+basepath = r'2019 DMN\Data files'
+intersect_path = r'DMN\structure_intersections'
 
 #%%
 ## Iterate through structure intersect files and sum the overlapping region to find the total size of overlap
