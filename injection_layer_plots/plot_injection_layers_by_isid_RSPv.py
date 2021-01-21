@@ -19,13 +19,13 @@ mpl.rcParams['pdf.fonttype'] = 42
 
 import platform
 if platform.system() == 'Darwin':
-    path = r'/Users/jenniferwh/Dropbox (Allen Institute)/Mesoscale Connectome Papers in Progress/2019 DMN/_new_figures/Figure_5'
-    dat = pd.read_csv(r'/Users/jenniferwh/Dropbox/DMN data/correlations/_final/good_td_wt_correlations_with_inj_corr.csv')
-    metadat = pd.read_csv(r'/Users/jenniferwh/Dropbox (Allen Institute)/Mesoscale Connectome Papers in Progress/2019 DMN/target_defined_dataset.csv')
+    path = r'2019 DMN/_new_figures/Figure_5'
+    dat = pd.read_csv(r'DMN data/correlations/_final/good_td_wt_correlations_with_inj_corr.csv')
+    metadat = pd.read_csv(r'2019 DMN/target_defined_dataset.csv')
 elif platform.system() == 'Windows':
-    path = r'C:\Users\jenniferwh\Dropbox (Allen Institute)\Mesoscale Connectome Papers in Progress\2019 DMN\_new_figures\Figure_5' 
-    dat = pd.read_csv(r'C:\Users\jenniferwh\Dropbox (Personal)\DMN data\correlations\_final\good_td_wt_correlations_with_inj_corr.csv')
-    metadat = pd.read_csv(r'C:\Users\jenniferwh\Dropbox (Allen Institute)\Mesoscale Connectome Papers in Progress\2019 DMN\target_defined_dataset.csv')
+    path = r'2019 DMN\_new_figures\Figure_5' 
+    dat = pd.read_csv(r'DMN data\correlations\_final\good_td_wt_correlations_with_inj_corr.csv')
+    metadat = pd.read_csv(r'2019 DMN\target_defined_dataset.csv')
 from allensdk.core.mouse_connectivity_cache import MouseConnectivityCache
 mcc = MouseConnectivityCache(manifest_file = 'connectivity/mouse_connectivity_manifest.json')
 
@@ -132,11 +132,11 @@ inj_unionizes = []
 if len(not_online)>0: # new data not released online
     for expt in not_online:
         if platform.system() == 'Windows':
-            unionize_path = os.path.join(r'\\allen\programs\celltypes\workgroups\mousecelltypes\T503_Connectivity_in_Alzheimer_Mice\Jennifer\DMN_paper\alternative_unionizes',
+            unionize_path = os.path.join(r'DMN_paper\alternative_unionizes',
                                          'experiment_{0}'.format(str(expt)), 
                                          'output.json') #new data not online yet
         else:
-            unionize_path = os.path.join(r'/Users/jenniferwh/Dropbox (Allen Institute)/Mesoscale Connectome Papers in Progress/2019 DMN/data_files/alternative_unionizes',
+            unionize_path = os.path.join(r'2019 DMN/data_files/alternative_unionizes',
                                          'experiment_{0}'.format(str(expt)), 
                                          'output.json') #new data not online yet
         with open(unionize_path, 'r') as jsonfile:
@@ -194,7 +194,7 @@ fname = 'RSPv'
 labels = ['PL', 'PL', 'ACAd', 'ACAd', 'VISpl', 'VISp', 'VISl', 'VISpl', 'WT'] #left to right in figure
 g = plot_clustered_stacked(dfs, labels)
 
-savepath = r'/Users/jenniferwh/Dropbox (Allen Institute)/Mesoscale Connectome Papers in Progress/2019 DMN/_new_figures/Figure_6'
+savepath = r'2019 DMN/_new_figures/Figure_6'
 plt.savefig(os.path.join(savepath, 
                          'layer_quantification_{0}.pdf'.format(fname)),
             bbox_inches='tight', 
