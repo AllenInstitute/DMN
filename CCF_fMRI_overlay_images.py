@@ -12,11 +12,11 @@ import numpy as np
 import platform
 
 if platform.system == 'Linux':
-    fmri_datpath = r'/allen/programs/celltypes/workgroups/mousecelltypes/T503_Connectivity_in_Alzheimer_Mice/Jennifer/DMN paper/DfMRI data from Alessandro/fMRI_ICA_map'
-    savepath = r'/allen/programs/celltypes/workgroups/mousecelltypes/T503_Connectivity_in_Alzheimer_Mice/Jennifer/DMN paper/fMRI data from Alessandro/fMRI_ICA_map/fMRI CCF overlap images'
+    fmri_datpath = r'DMN paper/fMRI data from Alessandro/fMRI_ICA_map'
+    savepath = r'DMN paper/fMRI data from Alessandro/fMRI_ICA_map/fMRI CCF overlap images'
 else:
-    fmri_datpath = r'\\allen\programs\celltypes\workgroups\mousecelltypes\T503_Connectivity_in_Alzheimer_Mice\Jennifer\DMN paper\fMRI data from Alessandro\fMRI_ICA_map'
-    savepath = r'\\allen\programs\celltypes\workgroups\mousecelltypes\T503_Connectivity_in_Alzheimer_Mice\Jennifer\DMN paper\fMRI data from Alessandro\fMRI_ICA_map\fMRI CCF overlap images'
+    fmri_datpath = r'DMN paper\fMRI data from Alessandro\fMRI_ICA_map'
+    savepath = r'DMN paper\fMRI data from Alessandro\fMRI_ICA_map\fMRI CCF overlap images'
 
 d, _ = nrrd.read(os.path.join(fmri_datpath, 'dmn_mask_z_1_allen_masked_sym.nrrd'))
 d17, _ = nrrd.read(os.path.join(fmri_datpath, 'dmn_mask_z_1.7_allen_masked_sym.nrrd'))
