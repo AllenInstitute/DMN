@@ -78,7 +78,7 @@ def main():
     # hardcoding this for now
     args.resolution = 10
 
-    template_file = '/allen/programs/celltypes/workgroups/mousecelltypes/T503_Connectivity_in_Alzheimer_Mice/Jennifer/cluster_code/cortical_projections/ica_all_05_icasso_iter_1000_comp_1_mask_z_1_allen_masked_sym_thresh_2.nrrd'
+    template_file = 'cluster_code/cortical_projections/ica_all_05_icasso_iter_1000_comp_1_mask_z_1_allen_masked_sym_thresh_2.nrrd'
     
     view_file = os.path.join( args.model_directory, 'corticalCoordinates', 'top_view_paths_%d.h5' % args.resolution)
 
