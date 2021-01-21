@@ -22,7 +22,7 @@ ai_map = st.get_id_acronym_map()
 ia_map = {value: key for key, value in ai_map.items()}
 
 #Compile wt data
-path = r'\\allen\programs\celltypes\workgroups\mousecelltypes\T503_Connectivity_in_Alzheimer_Mice\Jennifer\cluster_code\correlations\output\NPV'
+path = r'cluster_code\correlations\output\NPV'
 df = pd.DataFrame()
 for filename in os.listdir(path):
     if filename != 'distance_corrected' and filename != 'good backup':
@@ -38,7 +38,7 @@ for experiment in df['image_series_id']:
         unionize = unionize[(unionize['is_injection'] == True) &
                             (unionize['hemisphere_id'] == 3)]
     else:
-        unionize_path = os.path.join(r'\\allen\programs\celltypes\workgroups\mousecelltypes\T503_Connectivity_in_Alzheimer_Mice\Jennifer\DMN_paper\alternative_unionizes',
+        unionize_path = os.path.join(r'DMN_paper\alternative_unionizes',
                                          'experiment_{0}'.format(str(experiment)), 
                                          'output.json') #new data not online yet
         with open(unionize_path, 'r') as jsonfile:
@@ -104,4 +104,4 @@ df['same secondary for <60% primary'] = (df['td_percent_primary'] < 0.6)  | (
         df['match_percent_primary'] < 0.6) & (df['same_primary']) & (df['same_secondary'])
 df.loc[df['same_primary'] == True, 'same secondary for <60% primary'] = np.nan
 df['injection_size_ratio'] = df['match_injection_size']/df['td_injection_size']   
-df.to_csv(r'C:\Users\jenniferwh\Dropbox\DMN data\correlations\td_wt_cre_matched_correlations_NPV_dice.csv', index = False)
+df.to_csv(r'DMN data\correlations\td_wt_cre_matched_correlations_NPV_dice.csv', index = False)
