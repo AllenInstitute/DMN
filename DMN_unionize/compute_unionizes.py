@@ -8,12 +8,7 @@ import platform
 
 # specialized imports
 if platform.system() == 'Linux':
-    sys.path.append(r'/allen/programs/celltypes/workgroups/mousecelltypes/T503_Connectivity_in_Alzheimer_Mice/Jennifer/cluster_code')
-    sys.path.append(r'/allen/programs/celltypes/workgroups/mousecelltypes/T503_Connectivity_in_Alzheimer_Mice/Jennifer/cluster_code/anatomy')
-    sys.path.append(r'/allen/programs/celltypes/workgroups/mousecelltypes/T503_Connectivity_in_Alzheimer_Mice/Jennifer/cluster_code/nileg_utilities')
-    sys.path.append(r'/allen/programs/celltypes/workgroups/mousecelltypes/T503_Connectivity_in_Alzheimer_Mice/Jennifer/cluster_code/nileg_projects')
-    sys.path.append(r'/allen/programs/celltypes/workgroups/mousecelltypes/T503_Connectivity_in_Alzheimer_Mice/Jennifer/cluster_code/allensdk')
-    sys.path.append(r'/allen/programs/celltypes/workgroups/mousecelltypes/T503_Connectivity_in_Alzheimer_Mice/Jennifer/cluster_code/allensdk/allensdk/internal/core')
+    sys.path.append(r'Jennifer/cluster_code')
     import lims_utilities
     from lims_utilities import safe_system_path
     
