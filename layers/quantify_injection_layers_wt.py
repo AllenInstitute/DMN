@@ -18,9 +18,9 @@ ai_map = {value:key for key,value in ia_map.items()}
 
 import platform
 if platform.system() == 'Windows':
-    path = r'c:\\Users\jenniferwh\Dropbox\DMN data\correlations\_final'
+    path = r'DMN data\correlations\_final'
 elif platform.system() == 'Darwin':
-    path = r'/Users/jenniferwh/Dropbox/DMN data/correlations/_final'
+    path = r'DMN data/correlations/_final'
 dat = pd.read_csv(os.path.join(path, 'match_correlations_by_source_NPV_all_thresholded_1_5.csv'))
 
 structs = st.get_structures_by_set_id(
