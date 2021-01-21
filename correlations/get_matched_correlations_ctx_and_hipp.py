@@ -108,11 +108,11 @@ def main():
     # find target-defined experiment source
     if len(td_experiments[td_experiments['id'] == args.id]) == 0: # new data not released online
         if platform.system() == 'Windows':
-            unionize_path = os.path.join(r'\\allen\programs\celltypes\workgroups\mousecelltypes\T503_Connectivity_in_Alzheimer_Mice\Jennifer\DMN_paper\alternative_unionizes',
+            unionize_path = os.path.join(r'DMN_paper\alternative_unionizes',
                                          'experiment_{0}'.format(str(args.id)), 
                                          'output.json') #new data not online yet
         else:
-            unionize_path = os.path.join(r'/allen/programs/celltypes/workgroups/mousecelltypes/T503_Connectivity_in_Alzheimer_Mice/Jennifer/DMN_paper/alternative_unionizes',
+            unionize_path = os.path.join(r'DMN_paper/alternative_unionizes',
                                          'experiment_{0}'.format(str(args.id)), 
                                          'output.json') #new data not online yet
         with open(unionize_path, 'r') as jsonfile:
@@ -304,9 +304,9 @@ def main():
            'spearman_correlation': spearmancorr, 
            'pearson_correlation': pearsoncorr,
            'source': source_abbrev}
-    savepath = '/allen/programs/celltypes/workgroups/mousecelltypes/T503_Connectivity_in_Alzheimer_Mice/Jennifer/cluster_code/correlations/output/NPV'
+    savepath = 'cluster_code/correlations/output/NPV'
     if platform.system() == 'Windows':
-        savepath = r'\\allen\programs\celltypes\workgroups\mousecelltypes\T503_Connectivity_in_Alzheimer_Mice\Jennifer\cluster_code\correlations\output\NPV'
+        savepath = r'cluster_code\correlations\output\NPV'
     with open(os.path.join(savepath, '{}.json'.format(args.id)), 'w') as outfile:
         json.dump(dat, outfile, sort_keys = False, indent = 4)
     print(dat)

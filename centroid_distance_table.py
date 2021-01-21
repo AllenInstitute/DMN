@@ -11,7 +11,7 @@ import nrrd
 from anatomy.anatomy_api import AnatomyApi
 import pandas as pd
 
-savepath = r'\\AIBSDATA\mousecelltypes\T503_Connectivity_in_Alzheimer_Mice\Jennifer\DMN paper\consensus targets'
+savepath = r'DMN paper\consensus targets'
 source = 'TEa_ECT_ENTl'
 
 def calculate_injection_centroid(injection_density,

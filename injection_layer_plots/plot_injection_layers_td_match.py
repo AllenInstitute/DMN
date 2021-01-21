@@ -19,11 +19,11 @@ mpl.rcParams['pdf.fonttype'] = 42
 import platform
 if platform.system() == 'Darwin':
     path = r'/Users/jenniferwh/Dropbox/DMN data/layers'
-    dat = pd.read_csv(r'/Users/jenniferwh/Dropbox/DMN data/correlations/_final/good_td_wt_correlations_with_inj_corr.csv')
-    metadat = pd.read_csv(r'/Users/jenniferwh/Dropbox (Allen Institute)/Mesoscale Connectome Papers in Progress/2019 DMN/target_defined_dataset.csv')
+    dat = pd.read_csv(r'DMN data/correlations/_final/good_td_wt_correlations_with_inj_corr.csv')
+    metadat = pd.read_csv(r'2019 DMN/target_defined_dataset.csv')
 elif platform.system() == 'Windows':
-    path = r'C:\Users\jenniferwh\Dropbox (Personal)\DMN data\layers' 
-    dat = pd.read_csv(r'C:\Users\jenniferwh\Dropbox (Personal)\DMN data\correlations\_final\good_td_wt_correlations_with_inj_corr.csv')
+    path = r'DMN data\layers' 
+    dat = pd.read_csv(r'DMN data\correlations\_final\good_td_wt_correlations_with_inj_corr.csv')
     
 from allensdk.core.mouse_connectivity_cache import MouseConnectivityCache
 mcc = MouseConnectivityCache(manifest_file = 'connectivity/mouse_connectivity_manifest.json')

@@ -13,7 +13,7 @@ import os
 import json
 
 def main():
-    path = r'C:\Users\jenniferwh\Dropbox (Personal)\DMN data\correlations\core_structures'
+    path = r'DMN data\correlations\core_structures'
     
     mcc = MouseConnectivityCache(manifest_file='connectivity/mouse_connectivity_manifest.json')
     aapi = AnatomyApi()

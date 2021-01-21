@@ -174,7 +174,7 @@ def main():
                    'spearman_correlation': spearmanr, 
                    'pearson_correlation': pearsonr,
                    'source': td_experiments[td_experiments['id'] == isid]['structure_abbrev'].values[0]}
-            savepath = '/allen/programs/celltypes/workgroups/mousecelltypes/T503_Connectivity_in_Alzheimer_Mice/Jennifer/cluster_code/voxel_model/output'
+            savepath = 'cluster_code/voxel_model/output'
             if platform.system() == 'Windows':
                 savepath = r'C:\Users\jenniferwh\Dropbox (Personal)\DMN data\correlations\model_unionize_correlations'
             with open(os.path.join(savepath, '{}.json'.format(isid)), 'w') as outfile:

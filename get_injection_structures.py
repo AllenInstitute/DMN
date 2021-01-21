@@ -11,9 +11,9 @@ from anatomy.anatomy_api import AnatomyApi
 
 import platform
 if platform.system() == 'Darwin':
-    path = '/Users/jenniferwh/Dropbox/DMN data/correlations'
+    path = 'DMN data/correlations'
 elif platform.system() == 'Windows':
-    path = r'C:\\Users\jenniferwh\Dropbox\DMN data\correlations'
+    path = r'DMN data\correlations'
     
 aapi = AnatomyApi()
 data = pd.read_csv(os.path.join(path, 'cla_correlations.csv'))

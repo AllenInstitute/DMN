@@ -12,8 +12,8 @@ import json
 from anatomy.anatomy_api import AnatomyApi
 aapi = AnatomyApi()
 
-isids = pd.read_csv(r"C:\Users\jenniferwh\Desktop\isids.csv")
-savepath = r"C:\Users\jenniferwh\Dropbox (Allen Institute)\AD_grid_files"
+isids = pd.read_csv(r"isids.csv")
+savepath = r"AD_grid_files"
 
 isids = isids['isids'].values
 

@@ -132,9 +132,9 @@ def get_flat_centroid_coord(x,y,z,volume_shape,flipped, path):
     
 def main():
     if platform.system() == 'Windows':
-        path = r'\\allen\programs\celltypes\workgroups\mousecelltypes\T503_Connectivity_in_Alzheimer_Mice\Jennifer\cluster_code\cortical_projections'
+        path = r'cluster_code\cortical_projections'
     else:
-        path = r'/allen/programs/celltypes/workgroups/mousecelltypes/T503_Connectivity_in_Alzheimer_Mice/Jennifer/cluster_code/cortical_projections'
+        path = r'cluster_code/cortical_projections'
     # Load reference space
     mcc = MouseConnectivityCache(manifest_file='../connectivity/mouse_connectivity_manifest.json',
                                  resolution=10)

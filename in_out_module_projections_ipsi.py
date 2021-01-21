@@ -30,9 +30,9 @@ def check_for_flip(unionize):
 
 import platform
 if platform.system() == 'Windows':
-    basepath = r'C:\Users\jenniferwh\Dropbox (Allen Institute)\Mesoscale Connectome Papers in Progress\2019 DMN'
+    basepath = r'2019 DMN'
 elif platform.system() == 'Darwin':
-    basepath = r'/Users/jenniferwh/Dropbox (Allen Institute)/Mesoscale Connectome Papers in Progress/2019 DMN'
+    basepath = r'2019 DMN'
 
 datapath = os.path.join(basepath, 'data_files')
 savepath = os.path.join(basepath, '_new_figures', 'Figure_3')
