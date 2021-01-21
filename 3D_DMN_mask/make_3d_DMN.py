@@ -17,9 +17,9 @@ import scipy.ndimage
 
 # get a binary mask
 if platform.system() == 'Windows':
-    basepath = r'\\allen\programs\celltypes\workgroups\mousecelltypes\T503_Connectivity_in_Alzheimer_Mice\Jennifer\DMN paper\fMRI data from Alessandro\fMRI_ICA_map'
+    basepath = r'fMRI data from Alessandro\fMRI_ICA_map'
 if platform.system() == 'Darwin':
-    basepath = r'/Users/jen/Dropbox (Personal)/DMN paper/fMRI data from Alessandro/fMRI_ICA_map'
+    basepath = r'fMRI data from Alessandro/fMRI_ICA_map'
 
 mask1, _ = nrrd.read(os.path.join(basepath, 'dmn_mask_z_1_allen_masked_sym.nrrd'))
 mask1_25um = scipy.ndimage.zoom(mask1, 4, order=0)
