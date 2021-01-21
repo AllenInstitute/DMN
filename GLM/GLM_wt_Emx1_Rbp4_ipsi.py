@@ -108,9 +108,9 @@ ctx_experiments = ctx_experiments[~ctx_experiments['id'].isin(fail_expts)]
 
 # DMN maksks
 if platform.system() == 'Windows':
-    path = r'C:\Users\jenniferwh\Dropbox (Allen Institute)\Mesoscale Connectome Papers in Progress\2019 DMN'
+    path = r'2019 DMN'
 elif platform.system() == 'Darwin':
-    path = r'/Users/jenniferwh/Dropbox (Allen Institute)/Mesoscale Connectome Papers in Progress/2019 DMN'
+    path = r'2019 DMN'
 outpath = os.path.join(path, 'data_files')
 masks, _ = nrrd.read(os.path.join(path, 'fMRI_masks', 'dmn_mask_and_core.nrrd'))
 dmn_mask = np.zeros(masks.shape)
