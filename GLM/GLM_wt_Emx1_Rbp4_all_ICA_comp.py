@@ -153,9 +153,9 @@ hipp_experiments = pd.DataFrame(mcc.get_experiments(cre=False,
 
 # DMN maksks
 if platform.system() == 'Windows':
-    path = r'C:\Users\jenniferwh\Dropbox (Allen Institute)\Mesoscale Connectome Papers in Progress\2019 DMN'
+    path = r'2019 DMN'
 elif platform.system() == 'Darwin':
-    path = r'/Users/jenniferwh/Dropbox (Allen Institute)/Mesoscale Connectome Papers in Progress/2019 DMN'
+    path = r'2019 DMN'
 outpath = os.path.join(path, 'data_files')
 mask_path = os.path.join(path, 'fMRI_masks', 'all ICA components and masks zscore 1')
 
