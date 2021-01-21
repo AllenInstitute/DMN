@@ -70,11 +70,11 @@ def main():
     print(args.td_id)
     if len(td_experiments[td_experiments['id'] == args.td_id]) == 0: # new data not released online
         if platform.system() == 'Windows':
-            unionize_path = os.path.join(r'\\allen\programs\celltypes\workgroups\mousecelltypes\T503_Connectivity_in_Alzheimer_Mice\Jennifer\DMN_paper\alternative_unionizes',
+            unionize_path = os.path.join(r'DMN_paper\alternative_unionizes',
                                          'experiment_{0}'.format(str(args.td_id)), 
                                          'output.json') #new data not online yet
         else:
-            unionize_path = os.path.join(r'/allen/programs/celltypes/workgroups/mousecelltypes/T503_Connectivity_in_Alzheimer_Mice/Jennifer/DMN_paper/alternative_unionizes',
+            unionize_path = os.path.join(r'DMN_paper/alternative_unionizes',
                                          'experiment_{0}'.format(str(args.td_id)), 
                                          'output.json') #new data not online yet
         with open(unionize_path, 'r') as jsonfile:
