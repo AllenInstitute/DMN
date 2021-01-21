@@ -5,10 +5,10 @@ if platform.system() == 'Linux':
 
 from pbstools import PythonJob
 
-python_file = r"/allen/programs/celltypes/workgroups/mousecelltypes/T503_Connectivity_in_Alzheimer_Mice/Jennifer/cluster_code/correlations/get_matched_td_correlations.py"
+python_file = r"cluster_code/correlations/get_matched_td_correlations.py"
 
 
-jobdir = '/allen/programs/celltypes/workgroups/mousecelltypes/T503_Connectivity_in_Alzheimer_Mice/Jennifer/cluster_code/cluster_out'
+jobdir = 'cluster_code/cluster_out'
 
 job_settings = {'queue': 'celltypes',
                 'jobdir': jobdir,
