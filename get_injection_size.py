@@ -8,7 +8,7 @@ Created on Tue Jan  8 14:47:48 2019
 from allensdk.core.mouse_connectivity_cache import MouseConnectivityCache
 import pandas as pd
 
-dat = pd.read_csv(r"C:\Users\jenniferwh\Dropbox (Personal)\DMN data\correlations\all_same_primary.csv")
+dat = pd.read_csv(r"DMN data\correlations\all_same_primary.csv")
 mcc = MouseConnectivityCache(manifest_file = '../connectivity/mouse_connectivity_manifest.json')
 distances = {}
 for isid in dat['image_series_id'].unique():
