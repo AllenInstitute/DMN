@@ -1,14 +1,14 @@
 import sys
 import platform
 if platform.system() == 'Linux':
-    sys.path.append(r'/allen/programs/celltypes/workgroups/mousecelltypes/T503_Connectivity_in_Alzheimer_Mice/Jennifer/cluster_code/pbstools')
+    sys.path.append(r'cluster_code/pbstools')
 
 from pbstools import PythonJob
 
-python_file = r"/allen/programs/celltypes/workgroups/mousecelltypes/T503_Connectivity_in_Alzheimer_Mice/Jennifer/cluster_code/correlations/correlate_matches_by_source.py"
+python_file = r"cluster_code/correlations/correlate_matches_by_source.py"
 
 
-jobdir = '/allen/programs/celltypes/workgroups/mousecelltypes/T503_Connectivity_in_Alzheimer_Mice/Jennifer/cluster_code/cluster_out'
+jobdir = 'cluster_code/cluster_out'
 
 job_settings = {'queue': 'celltypes',
                 'jobdir': jobdir,
