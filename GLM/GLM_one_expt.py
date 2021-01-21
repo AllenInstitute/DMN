@@ -118,9 +118,9 @@ ctx_experiments = pd.concat([ctx_experiments, cre_experiments])
 
 # DMN maksks
 if platform.system() == 'Windows':
-    path = r'C:\Users\jenniferwh\Dropbox (Allen Institute)\2019 DMN'
+    path = r'2019 DMN'
 elif platform.system() == 'Darwin':
-    path = r'/Users/jenniferwh/Dropbox (Allen Institute)/2019 DMN'
+    path = r'2019 DMN'
 outpath = os.path.join(path, 'data_files')
 masks, _ = nrrd.read(os.path.join(path, 'fMRI_masks', 'dmn_mask_and_core.nrrd'))
 dmn_mask = np.zeros(masks.shape)
@@ -168,7 +168,7 @@ d_coeff, dmn_coeff, tvals, pvals, yvals, prediction  = fit_glm(in_or_out, [dista
 
 
 #%% Plot
-outpath = r'/Users/jenniferwh/Dropbox (Allen Institute)/2019 DMN/_Manuscript drafts/Neuron Resubmission'
+outpath = r'2019 DMN/_Manuscript drafts/Neuron Resubmission'
 
 fig, ax = plt.subplots(figsize = (1.5, 1.5))
 #in_or_out = bool(in_or_out)
