@@ -78,7 +78,7 @@ def main():
     # hardcoding this for now
     args.resolution = 10
 
-    template_file = '/allen/programs/celltypes/production/0378/prod415/image_series_485553574/grid/injection_density_10.nrrd'
+    template_file = 'image_series_485553574/grid/injection_density_10.nrrd'
     
     view_file = os.path.join( args.model_directory, 'corticalCoordinates', 'top_view_paths_%d.h5' % args.resolution)
 
