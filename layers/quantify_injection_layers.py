@@ -13,7 +13,7 @@ mcc = MouseConnectivityCache(manifest_file = '../connectivity/mouse_connectivity
 st = mcc.get_structure_tree()
 ia_map = st.get_id_acronym_map()
 
-path = r'/Users/jenniferwh/Dropbox/DMN data/correlations'
+path = r'DMN data/correlations'
 dat = pd.read_csv(os.path.join(path, 'match_correlations_by_source_NPV_ipsi.csv'))
 
 structs = st.get_structures_by_set_id(
